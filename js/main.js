@@ -104,26 +104,26 @@ function initBlobCursor() {
     
     interactiveElements.forEach(function (element) {
         element.addEventListener("mouseenter", function (e) {
-            // Increase blob intensity and add extra glow on hover
-            blob.style.opacity = '0.7';
-            blob.style.filter = 'blur(35px) brightness(1.5)';
+            // Increase blob intensity and add extra glow on hover (more subtle)
+            blob.style.opacity = '0.25';
+            blob.style.filter = 'blur(120px) brightness(1.1)';
             blob.style.boxShadow = `
-                0 0 80px #f59e0b,
-                0 0 160px #f97316,
-                0 0 240px #ea580c,
-                0 0 320px #dc2626
+                0 0 100px rgba(245, 158, 11, 0.4),
+                0 0 180px rgba(249, 115, 22, 0.3),
+                0 0 260px rgba(234, 88, 12, 0.2),
+                0 0 340px rgba(220, 38, 38, 0.1)
             `;
             blob.style.transition = 'all 0.3s ease';
         });
 
         element.addEventListener("mouseleave", function (e) {
-            // Reset blob to normal state when leaving
-            blob.style.opacity = '0.6';
-            blob.style.filter = 'blur(40px) brightness(1)';
+            // Reset blob to normal state when leaving (subtle default)
+            blob.style.opacity = '0.15';
+            blob.style.filter = 'blur(120px) brightness(0.9)';
             blob.style.boxShadow = `
-                0 0 50px #f59e0b,
-                0 0 100px #f97316,
-                0 0 150px #ea580c
+                0 0 80px rgba(245, 158, 11, 0.2),
+                0 0 150px rgba(249, 115, 22, 0.15),
+                0 0 220px rgba(234, 88, 12, 0.1)
             `;
             blob.style.transition = 'all 0.3s ease';
             

@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npx live-server --port=3000 --open=/index.html",
     "dev": "npx live-server --port=3000 --open=/index.html --watch=.",
-    "build": "echo 'Static site - no build process needed'",
+    "build": "echo 'Static site ready for deployment'",
     "deploy": "echo 'Deploy to your hosting platform of choice'"
   },
   "keywords": [

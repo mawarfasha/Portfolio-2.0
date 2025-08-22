@@ -105,7 +105,7 @@ function initBlobCursor() {
     interactiveElements.forEach(function (element) {
         element.addEventListener("mouseenter", function (e) {
             // Increase blob intensity and add extra glow on hover
-            blob.style.opacity = '0.9';
+            blob.style.opacity = '0.7';
             blob.style.filter = 'blur(35px) brightness(1.5)';
             blob.style.boxShadow = `
                 0 0 80px #f59e0b,

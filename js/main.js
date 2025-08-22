@@ -58,8 +58,8 @@ function initBlobCursor() {
     }
 
     // Variables for smooth animation
-    var mouse = { x: 0, y: 0 };
-    var pos = { x: 0, y: 0 };
+    var mouse = { x: -1000, y: -1000 }; // Start off-screen
+    var pos = { x: -1000, y: -1000 }; // Start off-screen
     var ratio = 0.65; // Controls how closely the blob follows the cursor (0-1)
     
     var blob = document.getElementById("blob");
@@ -72,8 +72,8 @@ function initBlobCursor() {
 
     console.log('Initializing blob cursor...');
 
-    // Set initial position
-    blob.style.transform = 'translate(-50%, -50%)';
+    // Set initial position off-screen
+    blob.style.transform = 'translate(-1000px, -1000px) translate(-50%, -50%)';
 
     // Track mouse movement
     document.addEventListener("mousemove", mouseMove);
@@ -89,6 +89,11 @@ function initBlobCursor() {
         var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         mouse.x = e.pageX;
         mouse.y = e.pageY - scrollTop;
+        
+        // Show the blob after first mouse movement
+        if (blob.style.opacity === '0' || blob.style.opacity === '') {
+            blob.style.opacity = '0.15';
+        }
     }
 
     // Animation loop using requestAnimationFrame for smooth performance

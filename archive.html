@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Archive - Mawar Fasha Roslan</title>
+    <meta name="description" content="A complete list of projects I've worked on over the years - from web development to sustainability initiatives.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <style>
+        .archive-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 8rem 2rem 4rem;
+        }
+        
+        .archive-header {
+            margin-bottom: 4rem;
+        }
+        
+        .archive-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #e2e8f0;
+            margin-bottom: 1rem;
+        }
+        
+        .archive-subtitle {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            margin-bottom: 2rem;
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #64ffda;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .back-link:hover {
+            transform: translateX(-0.5rem);
+        }
+        
+        .archive-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 4rem;
+        }
+        
+        .archive-table th {
+            text-align: left;
+            padding: 1rem 0;
+            color: #e2e8f0;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(100, 255, 218, 0.2);
+        }
+        
+        .archive-table td {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            vertical-align: top;
+        }
+        
+        .archive-table tbody tr {
+            transition: all 0.3s ease;
+        }
+        
+        .archive-table tbody tr:hover {
+            background: rgba(100, 255, 218, 0.05);
+        }
+        
+        .project-year {
+            color: #64ffda;
+            font-weight: 500;
+            min-width: 60px;
+        }
+        
+        .project-name {
+            font-weight: 600;
+            color: #e2e8f0;
+        }
+        
+        .project-name a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .project-name a:hover {
+            color: #64ffda;
+        }
+        
+        .project-description {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tech-item {
+            color: #64748b;
+            font-size: 0.8rem;
+            font-family: 'Fira Code', monospace;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .project-links a {
+            color: #64748b;
+            transition: color 0.3s ease;
+        }
+        
+        .project-links a:hover {
+            color: #64ffda;
+        }
+        
+        @media (max-width: 768px) {
+            .archive-container {
+                padding: 6rem 1rem 4rem;
+            }
+            
+            .archive-title {
+                font-size: 2rem;
+            }
+            
+            .archive-table {
+                font-size: 0.9rem;
+            }
+            
+            .archive-table th,
+            .archive-table td {
+                padding: 1rem 0.5rem;
+            }
+            
+            .project-tech {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+            
+            .project-links {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: flex-start;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .archive-table,
+            .archive-table thead,
+            .archive-table tbody,
+            .archive-table th,
+            .archive-table td,
+            .archive-table tr {
+                display: block;
+            }
+            
+            .archive-table thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+            
+            .archive-table tr {
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                margin-bottom: 1rem;
+                padding: 1rem;
+                border-radius: 8px;
+            }
+            
+            .archive-table td {
+                border: none;
+                padding: 0.5rem 0;
+                position: relative;
+                padding-left: 30%;
+            }
+            
+            .archive-table td:before {
+                content: attr(data-label);
+                position: absolute;
+                left: 6px;
+                width: 25%;
+                padding-right: 10px;
+                white-space: nowrap;
+                color: #64ffda;
+                font-weight: 600;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">MFR</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#experience">Experience</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="resume.pdf" target="_blank" class="resume-btn">Resume</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="archive-container">
+        <div class="archive-header">
+            <div class="back-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17 7L7 17M7 17H17M7 17V7"/>
+                </svg>
+                <a href="index.html">Back to home</a>
+            </div>
+            <h1 class="archive-title">All Projects</h1>
+            <p class="archive-subtitle">A complete list of projects I've worked on over the years</p>
+        </div>
+
+        <table class="archive-table">
+            <thead>
+                <tr>
+                    <th>Year</th>
+                    <th>Project</th>
+                    <th>Made at</th>
+                    <th>Built with</th>
+                    <th>Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="Year" class="project-year">2024</td>
+                    <td data-label="Project" class="project-name">
+                        <a href="#" target="_blank">fico-project: Web Development Startup</a>
+                    </td>
+                    <td data-label="Made at" class="project-description">Personal Startup</td>
+                    <td data-label="Built with" class="project-tech">
+                        <span class="tech-item">HTML</span>
+                        <span class="tech-item">CSS</span>
+                        <span class="tech-item">JavaScript</span>
+                        <span class="tech-item">GSAP</span>
+                    </td>
+                    <td data-label="Link" class="project-links">
+                        <a href="#" target="_blank" aria-label="Visit project">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                            </svg>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td data-label="Year" class="project-year">2024</td>
+                    <td data-label="Project" class="project-name">
+                        <a href="https://project2.com" target="_blank">Task Management App</a>
+                    </td>
+                    <td data-label="Made at" class="project-description">Company Name</td>
+                    <td data-label="Built with" class="project-tech">
+                        <span class="tech-item">Vue.js</span>
+                        <span class="tech-item">Firebase</span>
+                        <span class="tech-item">Vuex</span>
+                        <span class="tech-item">GSAP</span>
+                    </td>
+                    <td data-label="Link" class="project-links">
+                        <a href="https://project2.com" target="_blank" aria-label="Visit project">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                            </svg>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td data-label="Year" class="project-year">2023</td>
+                    <td data-label="Project" class="project-name">
+                        <a href="https://project3.com" target="_blank">Weather Dashboard</a>
+                    </td>
+                    <td data-label="Made at" class="project-description">Personal</td>
+                    <td data-label="Built with" class="project-tech">
+                        <span class="tech-item">JavaScript</span>
+                        <span class="tech-item">D3.js</span>
+                        <span class="tech-item">Weather API</span>
+                        <span class="tech-item">CSS3</span>
+                    </td>
+                    <td data-label="Link" class="project-links">
+                        <a href="https://project3.com" target="_blank" aria-label="Visit project">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                            </svg>
+                        </a>
+                        <a href="https://github.com/username/project3" target="_blank" aria-label="View source">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td data-label="Year" class="project-year">2023</td>
+                    <td data-label="Project" class="project-name">Blog Website</td>
+                    <td data-label="Made at" class="project-description">Personal</td>
+                    <td data-label="Built with" class="project-tech">
+                        <span class="tech-item">Gatsby</span>
+                        <span class="tech-item">GraphQL</span>
+                        <span class="tech-item">Markdown</span>
+                        <span class="tech-item">Netlify</span>
+                    </td>
+                    <td data-label="Link" class="project-links">
+                        <a href="https://github.com/username/blog" target="_blank" aria-label="View source">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td data-label="Year" class="project-year">2022</td>
+                    <td data-label="Project" class="project-name">Restaurant Website</td>
+                    <td data-label="Made at" class="project-description">Freelance</td>
+                    <td data-label="Built with" class="project-tech">
+                        <span class="tech-item">WordPress</span>
+                        <span class="tech-item">PHP</span>
+                        <span class="tech-item">MySQL</span>
+                        <span class="tech-item">jQuery</span>
+                    </td>
+                    <td data-label="Link" class="project-links">
+                        <span style="color: #64748b;">Private</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td data-label="Year" class="project-year">2022</td>
+                    <td data-label="Project" class="project-name">Portfolio Website v2</td>
+                    <td data-label="Made at" class="project-description">Personal</td>
+                    <td data-label="Built with" class="project-tech">
+                        <span class="tech-item">Next.js</span>
+                        <span class="tech-item">Tailwind CSS</span>
+                        <span class="tech-item">Framer Motion</span>
+                        <span class="tech-item">Vercel</span>
+                    </td>
+                    <td data-label="Link" class="project-links">
+                        <a href="https://github.com/username/portfolio-v2" target="_blank" aria-label="View source">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+
+    <script>
+        // Simple animation for archive page
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // Animate rows on load
+        gsap.fromTo('.archive-table tbody tr', 
+            {
+                opacity: 0,
+                y: 20
+            },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                stagger: 0.1,
+                ease: "power2.out",
+                delay: 0.3
+            }
+        );
+        
+        // Animate header
+        gsap.fromTo('.archive-header > *', 
+            {
+                opacity: 0,
+                y: 30
+            },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                stagger: 0.2,
+                ease: "power2.out"
+            }
+        );
+    </script>
+</body>
+</html>

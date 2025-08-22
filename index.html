@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mawar Fasha Roslan - Information Technology Student</title>
+    <meta name="description" content="Information Technology student passionate about web development and sustainable solutions.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+    
+    <!-- Immediate scroll fix -->
+    <script>
+        // Run immediately to prevent any automatic scrolling
+        (function() {
+            // Disable scroll restoration
+            if ('scrollRestoration' in history) {
+                history.scrollRestoration = 'manual';
+            }
+            
+            // Force to top immediately
+            window.scrollTo(0, 0);
+            
+            // Override any scroll attempts
+            let scrollBlocked = true;
+            const originalScrollTo = window.scrollTo;
+            window.scrollTo = function(x, y) {
+                if (scrollBlocked && y !== 0) {
+                    return; // Block any non-zero scroll attempts
+                }
+                originalScrollTo.call(this, x, y);
+            };
+            
+            // Unblock scrolling after 2 seconds
+            setTimeout(() => {
+                scrollBlocked = false;
+                window.scrollTo = originalScrollTo;
+            }, 2000);
+        })();
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#hero">MFR</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#about" data-text="About">About</a></li>
+                <li><a href="#experience" data-text="Experience">Experience</a></li>
+                <li><a href="#projects" data-text="Projects">Projects</a></li>
+                <li><a href="#contact" data-text="Contact">Contact</a></li>
+                <li><a href="resume.pdf" target="_blank" class="resume-btn">Resume</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Toggle -->
+    <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    
+    <!-- BLOB CURSOR FOLLOWER -->
+    <div id="cursor-follower">
+        <div id="blob"></div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Left Column - Fixed -->
+        <div class="left-column">
+            <div class="hero-top">
+                <!-- Hero Section -->
+                <section id="hero" class="hero section">
+                    <div class="hero-content">
+                        <h1 class="hero-name">Mawar Fasha</h1>
+                        <h2 class="hero-title">Information Technology Student</h2>
+                        <p class="hero-description">
+                            I develop innovative solutions and build meaningful digital experiences focused on sustainability and community impact.
+                        </p>
+                    </div>
+                </section>
+            </div>
+            
+            <div class="hero-middle">
+                <!-- Navigation Links -->
+                <nav class="hero-nav">
+                    <a href="#about" class="hero-nav-link active">
+                        <span class="nav-indicator"></span>
+                        <span class="nav-text">About</span>
+                    </a>
+                    <a href="#education" class="hero-nav-link">
+                        <span class="nav-indicator"></span>
+                        <span class="nav-text">Education</span>
+                    </a>
+                    <a href="#experience" class="hero-nav-link">
+                        <span class="nav-indicator"></span>
+                        <span class="nav-text">Experience</span>
+                    </a>
+                    <a href="#projects" class="hero-nav-link">
+                        <span class="nav-indicator"></span>
+                        <span class="nav-text">Projects</span>
+                    </a>
+                </nav>
+            </div>
+
+            <div class="hero-bottom">
+                <!-- Social Links -->
+                <div class="social-links">
+                    <a href="https://github.com/mawarfasha" target="_blank" aria-label="GitHub" data-cursor-hover data-cursor-parallax>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                    <a href="https://linkedin.com/in/mawar-fasha-roslan" target="_blank" aria-label="LinkedIn" data-cursor-hover data-cursor-parallax>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                    </a>
+                    <a href="mailto:mawar_22010115@utp.edu.my" aria-label="Email" data-cursor-hover data-cursor-parallax>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-.904.732-1.636 1.636-1.636h.906L12 11.71l9.458-7.889h.906c.904 0 1.636.732 1.636 1.636z"/>
+                        </svg>
+                    </a>
+                    <a href="tel:+60172474691" aria-label="Phone" data-cursor-hover data-cursor-parallax>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column - Scrollable -->
+        <div class="right-column">
+            <!-- About Section -->
+            <section id="about" class="section about-section">
+                <div class="section-content">
+                    <h2 class="section-title mobile-only">About</h2>
+                    <div class="about-text">
+                        <p>
+                            I'm an Information Technology student at Universiti Teknologi PETRONAS (UTP) passionate about creating meaningful digital solutions that make a positive impact on communities and the environment. My interests lie at the intersection of technology, sustainability, and social good.
+                        </p>
+                        <p>
+                            Currently pursuing my Bachelor's degree in Information Technology, I'm developing skills in programming languages like <a href="#" target="_blank">Python</a>, <a href="#" target="_blank">C++</a>, <a href="#" target="_blank">JavaScript</a>, and <a href="#" target="_blank">SQL</a>. I'm particularly interested in how technology can be leveraged to address environmental challenges and promote sustainable practices.
+                        </p>
+                        <p>
+                            I have experience in leadership roles, having served as a <a href="#" target="_blank">Project Director</a> for various community initiatives and working as a <a href="#" target="_blank">Mathematics Tutor</a> to help fellow students succeed in their academic journey. These experiences have strengthened my communication skills and passion for education.
+                        </p>
+                        <p>
+                            When I'm not coding, you can find me tutoring mathematics, leading community projects, or exploring new ways to integrate sustainability into technology solutions. I believe in the power of education and mentorship to create positive change in our communities.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Education Section -->
+            <section id="education" class="section education-section">
+                <div class="section-content">
+                    <h2 class="section-title mobile-only">Education</h2>
+                    
+                    <div class="experience-list">
+                        <div class="experience-item">
+                            <div class="experience-period">2022 — 2026</div>
+                            <div class="experience-content">
+                                <h3 class="experience-title">
+                                    <a href="https://www.utp.edu.my" target="_blank">Bachelor's Degree in Information Technology · Universiti Teknologi PETRONAS</a>
+                                </h3>
+                                <p class="experience-description">
+                                    Pursuing a comprehensive degree in Information Technology with focus on software development, database systems, web technologies, and sustainable computing solutions. Actively participating in programming competitions and community projects.
+                                </p>
+                                <div class="experience-skills">
+                                    <span class="skill-tag">HTML</span>
+                                    <span class="skill-tag">C++</span>
+                                    <span class="skill-tag">C (SEED Labs)</span>
+                                    <span class="skill-tag">Python</span>
+                                    <span class="skill-tag">JavaScript</span>
+                                    <span class="skill-tag">PHP</span>
+                                    <span class="skill-tag">SQL (MySQL)</span>
+                                    <span class="skill-tag">Visual Basic</span>
+                                    <span class="skill-tag">Bash/Shell Scripting</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="experience-item">
+                            <div class="experience-period">2020 — 2022</div>
+                            <div class="experience-content">
+                                <h3 class="experience-title">
+                                    <a href="https://www.utp.edu.my" target="_blank">Foundation in Computing · Universiti Teknologi PETRONAS</a>
+                                </h3>
+                                <p class="experience-description">
+                                    Completed comprehensive foundation studies in computing, building strong fundamentals in mathematics, analytic and basic programming concepts. Successfully transitioned to Information Technology degree program.
+                                </p>
+                                <div class="experience-skills">
+                                    <span class="skill-tag">3.47</span>
+                                    <span class="skill-tag">Mathematics</span>
+                                    <span class="skill-tag">Analytic</span>
+                                    <span class="skill-tag">Programming Fundamentals</span>
+                                    <span class="skill-tag">Engineering Principles</span>
+                                    <span class="skill-tag">Business Management</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="experience-item">
+                            <div class="experience-period">2015 — 2019</div>
+                            <div class="experience-content">
+                                <h3 class="experience-title">
+                                    <a href="#" target="_blank">SPM (Malaysian Certificate of Education) · SMK Bandar Baru Sg Buloh</a>
+                                </h3>
+                                <p class="experience-description">
+                                    Achieved excellent results in SPM with strong performance in Mathematics, Computer Sciences and Languages. Developed foundational knowledge that supported transition to engineering studies.
+                                </p>
+                                <div class="experience-skills">
+                                    <span class="skill-tag">7A</span>
+                                    <span class="skill-tag">Computer Sciences</span>
+                                    <span class="skill-tag">Mathematics</span>
+                                    <span class="skill-tag">Science</span>
+                                    <span class="skill-tag">English</span>
+                                    <span class="skill-tag">Malay</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Experience Section -->
+            <section id="experience" class="section experience-section">
+                <div class="section-content">
+                    <h2 class="section-title mobile-only">Experience</h2>
+                    
+                    <div class="experience-list">                        
+                        <div class="experience-item">
+                            <div class="experience-period">2024</div>
+                            <div class="experience-content">
+                                <h3 class="experience-title">
+                                    <a href="#" target="_blank">Project Director (OMC 2024) · Centre for Foundation Studies UTP</a>
+                                </h3>
+                                <p class="experience-description">
+                                  Led a team in organizing and managing the OMC Competition, handling event planning, logistics, execution, and addressing team management challenges to ensure smooth communication and task delegation.  
+                                </p>
+                                <div class="experience-skills">
+                                    <span class="skill-tag">Leadership</span>
+                                    <span class="skill-tag">Team Coordination</span>
+                                    <span class="skill-tag">Sustainability</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="experience-item">
+                            <div class="experience-period">2024</div>
+                            <div class="experience-content">
+                                <h3 class="experience-title">
+                                    <a href="#" target="_blank">Project Director (ECOSCAPE) · Corporate Social Responsibility Project</a>
+                                </h3>
+                                <p class="experience-description">
+                                   Directed project initiatives focused on environmental sustainability, aligning efforts with SDG 11: Sustainable Cities and Communities.  Managed a cross-functional team, guiding them through project phases with a focus on creating sustainable urban solutions.  
+                                </p>
+                                <div class="experience-skills">
+                                    <span class="skill-tag">Leadership</span>
+                                    <span class="skill-tag">Project Management</span>
+                                    <span class="skill-tag">Team Coordination</span>
+                                    <span class="skill-tag">Community Engagement</span>
+                                    <span class="skill-tag">Sustainability</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="experience-item">
+                            <div class="experience-period">2023</div>
+                            <div class="experience-content">
+                                <h3 class="experience-title">
+                                    <a href="#" target="_blank">2nd Runner Up · "OH MY CODE!" Programming Competition</a>
+                                </h3>
+                                <p class="experience-description">
+                                    Led the technical development of a user-friendly web application that simplified government housing applications by eliminating the need for third-party interactions. Streamlined the application process, showcasing strong technical skills and innovative problem-solving.
+                                <div class="experience-skills">
+                                    <span class="skill-tag">Competitive Programming</span>
+                                    <span class="skill-tag">Algorithm Design</span>
+                                    <span class="skill-tag">Problem Solving</span>
+                                    <span class="skill-tag">Time Management</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="experience-item">
+                            <div class="experience-period">2023 — 2024</div>
+                            <div class="experience-content">
+                                <h3 class="experience-title">
+                                    <a href="#" target="_blank">Mathematics Tutor · Freelance</a>
+                                </h3>
+                                <p class="experience-description">
+                                    Provide personalized mathematics tutoring to university and secondary school students, helping them improve their understanding of complex mathematical concepts and achieve better academic performance. Develop customized learning materials and teaching strategies.
+                                </p>
+                                <div class="experience-skills">
+                                    <span class="skill-tag">Mathematics</span>
+                                    <span class="skill-tag">Teaching</span>
+                                    <span class="skill-tag">Communication</span>
+                                    <span class="skill-tag">Problem Solving</span>
+                                    <span class="skill-tag">Mentoring</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resume-link">
+                        <a href="#" target="_blank" class="resume-btn-full">
+                            View Full Résumé
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="section projects-section">
+                <div class="section-content">
+                    <h2 class="section-title mobile-only">Projects</h2>
+                    
+                    <div class="projects-list">
+                        <div class="project-item">
+                            <div class="project-image">
+                                <img src="images/ficoo.jpg" alt="fico-project Startup" loading="lazy">
+                                <div class="project-overlay">
+                                    <a href="https://ficostudyspace.vercel.app/" target="_blank" aria-label="View Project">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="project-content">
+                                <h3 class="project-title">
+                                    <a href="https://ficostudyspace.vercel.app/" target="_blank">fico-project: Web Development Startup</a>
+                                </h3>
+                                <p class="project-description">
+                                    <a href="https://ficostudyspace.vercel.app/" target="_blank">https://ficostudyspace.vercel.app/</a> <br> <br>
+                                    A self-initiated startup focused on web development and experimentation, aimed at personal growth. This journey encompasses learning by doing, turning ideas into functional websites and applications while developing both technical and creative skills.
+                                </p>
+                                <div class="project-skills">
+                                    <span class="skill-tag">Web Development</span>
+                                    <span class="skill-tag">JavaScript</span>
+                                    <span class="skill-tag">HTML/CSS</span>
+                                    <span class="skill-tag">Project Management</span>
+                                    <span class="skill-tag">Entrepreneurship</span>
+                                    <span class="skill-tag">Creative Problem Solving</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-item">
+                            <div class="project-image">
+                                <img src="images/Down-to-Earth.jpeg" alt="DOWN-TO-EARTH Sustainability Project" loading="lazy">
+                                <div class="project-overlay">
+                                    <a href="#" target="_blank" aria-label="View Project">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="project-content">
+                                <h3 class="project-title">
+                                    <a href="#" target="_blank">DOWN-TO-EARTH Sustainability Project</a>
+                                </h3>
+                                <p class="project-description">
+                                    A comprehensive community initiative focused on promoting environmental sustainability and awareness. Led project development from conception to implementation, engaging community members in sustainable practices and environmental education.
+                                </p>
+                                <div class="project-skills">
+                                    <span class="skill-tag">Project Management</span>
+                                    <span class="skill-tag">Community Engagement</span>
+                                    <span class="skill-tag">Environmental Awareness</span>
+                                    <span class="skill-tag">Leadership</span>
+                                    <span class="skill-tag">Sustainability</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-item">
+                            <div class="project-image">
+                                <img src="images/OMC project director 2.JPG" alt="Programming Competition Solutions" loading="lazy">
+                                <div class="project-overlay">
+                                    <a href="#" target="_blank" aria-label="View Project">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="project-content">
+                                <h3 class="project-title">
+                                    <a href="#" target="_blank">"OH MY CODE!" Competition Solutions</a>
+                                </h3>
+                                <p class="project-description">
+                                    Collection of algorithmic solutions and programming challenges completed during competitive programming events. Demonstrates problem-solving skills, algorithmic thinking, and proficiency in multiple programming languages.
+                                </p>
+                                <div class="project-skills">
+                                    <span class="skill-tag">Python</span>
+                                    <span class="skill-tag">C++</span>
+                                    <span class="skill-tag">Algorithms</span>
+                                    <span class="skill-tag">Data Structures</span>
+                                    <span class="skill-tag">Problem Solving</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="archive-link">
+                        <a href="archive.html" class="archive-btn">
+                            View Full Project Archive
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </section>
+            <!-- Writing Section -->
+            <!--
+            <section id="writing" class="section writing-section">
+                <div class="section-content">
+                    <h2 class="section-title mobile-only">Writing</h2>
+                    
+                    <div class="writing-list">
+                        <div class="writing-item">
+                            <div class="writing-image">
+                                <img src="images/article1.svg" alt="Modern CSS Techniques" loading="lazy">
+                            </div>
+                            <div class="writing-content">
+                                <div class="writing-year">2024</div>
+                                <h3 class="writing-title">
+                                    <a href="https://blog.example.com/modern-css" target="_blank">Modern CSS Techniques for Better Web Performance</a>
+                                </h3>
+                            </div>
+                        </div>
+
+                        <div class="writing-item">
+                            <div class="writing-image">
+                                <img src="images/article2.svg" alt="JavaScript Optimization" loading="lazy">
+                            </div>
+                            <div class="writing-content">
+                                <div class="writing-year">2023</div>
+                                <h3 class="writing-title">
+                                    <a href="https://blog.example.com/js-optimization" target="_blank">JavaScript Optimization Tips for Large Applications</a>
+                                </h3>
+                            </div>
+                        </div>
+
+                        <div class="writing-item">
+                            <div class="writing-image">
+                                <img src="images/article3.svg" alt="Accessibility Best Practices" loading="lazy">
+                            </div>
+                            <div class="writing-content">
+                                <div class="writing-year">2023</div>
+                                <h3 class="writing-title">
+                                    <a href="https://blog.example.com/accessibility" target="_blank">Web Accessibility Best Practices Every Developer Should Know</a>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            -->
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="footer-content">
+                    <p>
+                        Loosely designed in <a href="https://www.figma.com/" target="_blank">Figma</a> and coded in 
+                        <a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a> by yours truly. 
+                        Built with vanilla JavaScript and <a href="https://greensock.com/gsap/" target="_blank">GSAP</a>, 
+                        deployed with <a href="https://vercel.com/" target="_blank">Vercel</a>. 
+                        All text is set in the <a href="https://rsms.me/inter/" target="_blank">Inter</a> typeface.
+                    </p>
+                </div>
+            </footer>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+</body>
+</html>

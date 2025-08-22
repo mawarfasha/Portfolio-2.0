@@ -1,0 +1,30 @@
+{
+  "name": "portfolio-website",
+  "version": "1.0.0",
+  "description": "A modern portfolio website built with GSAP animations",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx live-server --port=3000 --open=/index.html",
+    "dev": "npx live-server --port=3000 --open=/index.html --watch=.",
+    "build": "echo 'Static site - no build process needed'",
+    "deploy": "echo 'Deploy to your hosting platform of choice'"
+  },
+  "keywords": [
+    "portfolio",
+    "website",
+    "gsap",
+    "animations",
+    "responsive",
+    "modern"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/portfolio"
+  },
+  "homepage": "https://yourusername.github.io/portfolio"
+}

@@ -15,6 +15,8 @@
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 0;
+    /* Prevent horizontal scroll */
+    overflow-x: hidden;
 }
 
 body {
@@ -27,6 +29,10 @@ body {
     font-size: 18px;
     margin: 0 auto;
     position: relative;
+    /* Ensure consistent font rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 
 /* Custom Cursor */
@@ -48,10 +54,53 @@ body {
     height: 40px;
     border: 1px solid rgba(100, 255, 218, 0.3);
     border-radius: 50%;
-    pointer-events: none;
-    z-index: 9998;
-    transition: all 0.3s ease;
-    display: none; /* Hide default cursor when blob is active */
+}
+
+/* Ensure images are responsive and don't overflow */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Prevent text from overflowing containers */
+p, span, div {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Cross-browser compatibility fixes */
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/* Prevent iOS zoom on input focus */
+input, select, textarea {
+    font-size: 16px;
+}
+
+/* Fix for iOS Safari viewport units */
+.main {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+}
+
+/* Ensure consistent line heights across browsers */
+body, p, span, div, a, button {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+/* Prevent text selection issues on touch devices */
+.hero-nav-link, .contact-link, .resume-btn-full, .archive-btn {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 /* === BLOB CURSOR FOLLOWER STYLES === */
@@ -1041,26 +1090,20 @@ body {
     }
 }
 
-@media (max-width: 480px) {
-    .nav {
-        display: block;
-    }
-    
-    .hamburger {
-        display: flex;
-    }
-    
+/* Tablet Portrait */
+@media (max-width: 768px) {
     .main {
         flex-direction: column;
         padding: 0;
+        max-width: 100%;
     }
     
     .left-column {
-        position: static;
+        position: relative !important;
         width: 100%;
         max-width: none;
         height: auto;
-        padding: 4rem 2rem 2rem 2rem;
+        padding: 3rem 2rem 2rem 2rem;
         min-height: auto;
         justify-content: flex-start;
         transform: none;
@@ -1071,6 +1114,7 @@ body {
         width: 100%;
         margin-left: 0;
         padding: 2rem;
+        max-width: none;
     }
     
     .hero-content {
@@ -1132,6 +1176,85 @@ body {
     
     .section {
         margin-bottom: 4rem;
+    }
+}
+
+/* Mobile Large */
+@media (max-width: 480px) {
+    .nav {
+        display: block;
+    }
+    
+    .hamburger {
+        display: flex;
+    }
+    
+    .nav-container {
+        padding: 0 1rem;
+    }
+    
+    .left-column,
+    .right-column {
+        padding: 1.5rem;
+    }
+    
+    .hero-name {
+        font-size: clamp(36px, 8vw, 48px);
+    }
+    
+    .hero-title {
+        font-size: clamp(18px, 5vw, 22px);
+    }
+    
+    .experience-item,
+    .project-item,
+    .writing-item {
+        padding: 1.5rem;
+    }
+    
+    .section {
+        margin-bottom: 4rem;
+    }
+    
+    /* Ensure buttons and links are touch-friendly */
+    .hero-nav-link,
+    .contact-link,
+    .resume-btn-full,
+    .archive-btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}
+
+/* Mobile Small */
+@media (max-width: 360px) {
+    .left-column,
+    .right-column {
+        padding: 1rem;
+    }
+    
+    .hero-name {
+        font-size: clamp(28px, 7vw, 36px);
+    }
+    
+    .hero-title {
+        font-size: clamp(16px, 4vw, 18px);
+    }
+    
+    .experience-item,
+    .project-item,
+    .writing-item {
+        padding: 1rem;
+    }
+    
+    .contact-links {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .contact-link {
+        justify-content: center;
+        text-align: center;
     }
 }
 

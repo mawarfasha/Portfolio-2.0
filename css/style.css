@@ -1350,8 +1350,59 @@ button,
  * ====================================================
  */
 
+/* Large Desktop (1400px+) */
+@media (max-width: 1400px) {
+    .main {
+        max-width: 1400px;
+    }
+}
+
+/* Medium Desktop (1200px) */
+@media (max-width: 1200px) {
+    .main {
+        max-width: 1200px;
+        padding: 0 3rem;
+    }
+    
+    .left-column, .right-column {
+        padding: 2rem;
+    }
+}
+
+/* Small Desktop/Large Laptop (1024px) */
+@media (max-width: 1024px) {
+    .main {
+        max-width: 1024px;
+        padding: 0 2.5rem;
+    }
+    
+    .left-column, .right-column {
+        padding: 1.5rem;
+    }
+    
+    .hero-name {
+        font-size: 3rem;
+    }
+}
+
+/* Medium Laptop (900px) */
+@media (max-width: 900px) {
+    .main {
+        max-width: 900px;
+        padding: 0 2rem;
+    }
+    
+    .hero-name {
+        font-size: 2.75rem;
+    }
+    
+    .section-title {
+        font-size: 0.9rem;
+    }
+}
+
 /* Mobile Viewport and Scroll Optimization */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     html {
         overflow-y: scroll !important;
         -webkit-overflow-scrolling: touch;
@@ -1679,6 +1730,13 @@ button,
         text-decoration-color: rgba(255, 255, 255, 0.3);
         text-underline-offset: 3px;
         transition: all 0.2s ease;
+        display: inline !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        line-height: inherit !important;
+        font-size: inherit !important;
+        vertical-align: baseline !important;
+        white-space: nowrap;
     }
     
     .about-text a:hover {
@@ -1758,15 +1816,22 @@ button,
     }
     
     .skill-tag {
-        background: rgba(255, 255, 255, 0.1);
-        color: var(--text-color);
+        background: rgba(45, 212, 191, 0.1);
+        color: var(--accent-color);
         font-size: 0.75rem;
-        font-weight: 400;
+        font-weight: 500;
         padding: 0.25rem 0.75rem;
         border-radius: 12px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(45, 212, 191, 0.2);
         position: static !important;
         display: inline-block;
+        pointer-events: none !important;
+        user-select: none !important;
+        -webkit-tap-highlight-color: transparent !important;
+        -webkit-touch-callout: none !important;
+        -webkit-user-select: none !important;
+        -moz-user-select: none !important;
+        -ms-user-select: none !important;
     }
     
     /* Projects */
@@ -1783,7 +1848,7 @@ button,
     
     .project-image {
         width: 100%;
-        height: 80px;
+        height: 60px;
         border-radius: 6px;
         object-fit: cover;
         margin-bottom: 1rem;
@@ -1924,7 +1989,7 @@ button,
     }
     
     .project-image {
-        height: 130px;
+        height: 50px;
     }
 }
 
@@ -1973,7 +2038,7 @@ button,
     }
     
     .project-image {
-        height: 140px;
+        height: 45px;
     }
 }
 
@@ -2083,7 +2148,7 @@ button,
  * Mobile Optimization for Cat Animation
  * Hide decorative animation on smaller screens to improve performance
  */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     #marco {
         display: none;
     }

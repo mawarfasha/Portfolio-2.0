@@ -707,6 +707,11 @@ function scrollToTop() {
  * Appears when user scrolls down, provides quick return
  */
 function addScrollToTopButton() {
+    // Don't create the button on mobile devices
+    if (window.innerWidth <= 1024) {
+        return;
+    }
+    
     const button = document.createElement('button');
     button.innerHTML = '↑';
     button.className = 'scroll-to-top';

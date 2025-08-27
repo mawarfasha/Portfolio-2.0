@@ -459,12 +459,15 @@ function initLoadingAnimation() {
         "-=0.3"
     );
     
-    // Typewriter effect for hero title
+    // Typewriter effect for hero title - morph from "Information Technology Student" to "Full-Stack Developer"
+    console.log('Starting text morphing animation...');
     gsap.to('.hero-title', {
-        duration: 2,
+        duration: 2.5,
         text: "Full-Stack Developer",
-        ease: "none",
-        delay: 1
+        ease: "power2.inOut",
+        delay: 0.9,
+        onStart: () => console.log('Text morphing started'),
+        onComplete: () => console.log('Text morphing completed')
     });
 }
 

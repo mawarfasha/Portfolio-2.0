@@ -1308,23 +1308,14 @@ button,
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    html {
-        overflow-y: scroll !important;
-        -webkit-overflow-scrolling: touch;
-    }
-    
     body {
         font-size: 16px;
         background: var(--bg-color);
         line-height: 1.6;
         padding: 0;
         margin: 0;
-        overflow-x: hidden !important;
-        overflow-y: scroll !important;
-        height: auto !important;
-        min-height: 100vh !important;
-        -webkit-overflow-scrolling: touch;
-        position: relative !important;
+        overflow-x: hidden; /* Prevent horizontal scroll */
+        overflow-y: auto;   /* Ensure vertical scroll works */
     }
     
     /* Reset positioning more selectively - avoid universal selector */
@@ -1376,30 +1367,15 @@ button,
     }
     
     .main {
-        display: block !important;
+        display: block;
         padding: 2rem 1.5rem;
-        width: 100% !important;
-        max-width: 100% !important;
-        margin: 0 !important;
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
         background: var(--bg-color);
-        box-sizing: border-box !important;
-        min-height: 100vh !important;
-        height: auto !important;
-        position: relative !important;
-        overflow: visible !important;
-        -webkit-overflow-scrolling: touch;
-    }
-    
-    /* Ensure any viewport containers don't block scroll */
-    .viewport,
-    .container,
-    .wrapper,
-    .page-wrapper {
-        height: auto !important;
-        min-height: auto !important;
-        max-height: none !important;
-        overflow: visible !important;
-        position: static !important;
+        box-sizing: border-box;
+        min-height: 100vh; /* Ensure full viewport height */
+        position: relative; /* Allow for proper stacking */
     }
     
     .left-column,
@@ -1416,9 +1392,9 @@ button,
     }
     
 
-    /* Hero Section - Force proper layout and ensure scrollable content */
+    /* Hero Section - Force proper layout */
     .hero-content {
-        margin-bottom: 3rem !important;
+        margin-bottom: 1rem;
         text-align: left;
         display: block !important;
         clear: both !important;
@@ -1428,16 +1404,13 @@ button,
         transform: none !important;
         overflow: visible !important;
         z-index: auto !important;
-        height: auto !important;
-        min-height: 60vh !important; /* Ensure enough content to scroll */
-        padding-bottom: 2rem;
     }
     
     .hero-name {
         font-size: 2.5rem;
         font-weight: 700;
         line-height: 1.1;
-        margin-bottom: 1rem !important;
+        margin-bottom: 0.5rem;
         color: var(--text-color);
         letter-spacing: -0.025em;
         display: block !important;
@@ -1450,7 +1423,7 @@ button,
         font-size: 1.125rem;
         font-weight: 400;
         color: var(--text-secondary);
-        margin-bottom: 2rem !important;
+        margin-bottom: 1.5rem;
         line-height: 1.4;
         display: block !important;
         position: static !important;
@@ -1466,23 +1439,19 @@ button,
         width: 100% !important;
         display: block !important;
         position: static !important;
-        margin-bottom: 3rem !important;
+        margin-bottom: 2rem !important;
         clear: both !important;
         white-space: normal !important;
         word-wrap: break-word !important;
-        min-height: 200px; /* Ensure some height for scrolling */
     }
     
-    /* Social Links - Ensure they're part of scrollable content */
+    /* Social Links */
     .social-links {
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        margin-bottom: 4rem !important;
-        position: static !important;
-        width: 100% !important;
-        clear: both !important;
-        padding: 1rem 0;
+        margin-bottom: 3rem; /* Add margin to ensure space */
+        position: static;
     }
     
     .social-links a {
@@ -1513,19 +1482,18 @@ button,
         display: none !important;
     }
     
-    /* Section Titles - Ensure proper spacing for scroll */
+    /* Section Titles */
     .section-title {
         font-size: 0.875rem;
         font-weight: 600;
         color: var(--text-color);
         text-transform: uppercase;
         letter-spacing: 0.1em;
-        margin: 3rem 0 2rem 0 !important;
-        padding: 1rem 0 !important;
-        display: block !important;
-        clear: both !important;
-        position: static !important;
-        width: 100% !important;
+        margin: 0 0 2rem 0;
+        padding: 0;
+        display: block;
+        clear: both;
+        position: static;
     }
     
     .mobile-only {

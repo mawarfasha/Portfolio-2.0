@@ -1,10 +1,17 @@
-/* Reset and Base Styles */
+/**
+ * Portfolio Stylesheet
+ * Modern, responsive design with glass morphism effects
+ * Optimized for desktop and mobile viewing
+ */
+
+/* CSS Reset and Global Configuration */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* CSS Custom Properties for Theme Management */
 :root {
     --bg-color: #1c1917;
     --accent-color: #f59e0b;
@@ -12,13 +19,14 @@
     --text-secondary: #e5e7eb;
 }
 
+/* HTML Configuration for Smooth Scrolling */
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 0;
-    /* Prevent horizontal scroll */
     overflow-x: hidden;
 }
 
+/* Body Configuration and Typography */
 body {
     font-family: __inter_20b187, __inter_Fallback_20b187, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     line-height: 1.6;
@@ -29,13 +37,12 @@ body {
     font-size: 18px;
     margin: 0 auto;
     position: relative;
-    /* Ensure consistent font rendering */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
 }
 
-/* Custom Cursor */
+/* Interactive Cursor System */
 .cursor {
     position: fixed;
     width: 8px;
@@ -45,7 +52,7 @@ body {
     pointer-events: none;
     z-index: 9999;
     transition: transform 0.1s ease;
-    display: none; /* Hide default cursor when blob is active */
+    display: none;
 }
 
 .cursor-follower {
@@ -62,44 +69,44 @@ body {
     opacity: 0;
 }
 
-/* Ensure images are responsive and don't overflow */
+/* Media Asset Optimization */
 img {
     max-width: 100%;
     height: auto;
     display: block;
 }
 
-/* Prevent text from overflowing containers */
+/* Typography and Text Handling */
 p, span, div {
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
 
-/* Cross-browser compatibility fixes */
+/* Cross-browser Compatibility */
 * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 
-/* Prevent iOS zoom on input focus */
+/* Mobile Input Optimization */
 input, select, textarea {
     font-size: 16px;
 }
 
-/* Fix for iOS Safari viewport units */
+/* Viewport Height Fix for Mobile */
 .main {
     min-height: 100vh;
     min-height: -webkit-fill-available;
 }
 
-/* Ensure consistent line heights across browsers */
+/* Text Rendering Consistency */
 body, p, span, div, a, button {
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
 }
 
-/* Prevent text selection issues on touch devices */
+/* Touch Device Interaction Optimization */
 .hero-nav-link, .contact-link, .resume-btn-full, .archive-btn {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -109,7 +116,7 @@ body, p, span, div, a, button {
     user-select: none;
 }
 
-/* === BLOB CURSOR FOLLOWER STYLES === */
+/* Interactive Blob Cursor System */
 #cursor-follower {
     position: fixed;
     top: 0;
@@ -124,12 +131,8 @@ body, p, span, div, a, button {
 }
 
 @keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }
 
 #cursor-follower.active {
@@ -152,6 +155,7 @@ body, p, span, div, a, button {
     transition: opacity 0.3s ease;
 }
 
+/* Animated Neon Pulse Effect for Blob */
 @keyframes neonPulse {
     0% {
         filter: blur(120px) brightness(0.8);
@@ -169,7 +173,7 @@ body, p, span, div, a, button {
     }
 }
 
-/* Hide cursor follower on touch devices */
+/* Touch Device Cursor Management */
 @media (hover: none) {
     #cursor-follower {
         display: none;
@@ -177,11 +181,11 @@ body, p, span, div, a, button {
     
     .cursor,
     .cursor-follower {
-        display: block; /* Show default cursor on touch devices */
+        display: block;
     }
 }
 
-/* Navigation */
+/* Navigation System (Hidden for Left Column Layout) */
 .nav {
     display: none;
 }
@@ -203,6 +207,7 @@ body, p, span, div, a, button {
     transition: color 0.3s ease;
 }
 
+/* Navigation Menu Styles */
 .nav-menu {
     display: flex;
     list-style: none;
@@ -229,6 +234,7 @@ body, p, span, div, a, button {
     color: var(--accent-color);
 }
 
+/* Navigation Link Underline Effect */
 .nav-menu a::after {
     content: '';
     position: absolute;
@@ -292,6 +298,7 @@ body, p, span, div, a, button {
     width: 100%;
 }
 
+/* Fixed Left Column Layout System */
 .left-column {
     position: fixed !important;
     top: 0 !important;
@@ -315,7 +322,7 @@ body, p, span, div, a, button {
     scroll-behavior: auto !important;
 }
 
-/* Force fixed positioning for left column */
+/* Ensure Left Column Maintains Fixed Position */
 .main .left-column {
     position: fixed !important;
     z-index: 9999 !important;
@@ -326,7 +333,7 @@ body, p, span, div, a, button {
     overflow: hidden !important;
 }
 
-/* Ensure left column content is always visible and non-scrollable */
+/* Left Column Content Visibility Management */
 .left-column * {
     visibility: visible !important;
     opacity: 1 !important;
@@ -334,7 +341,7 @@ body, p, span, div, a, button {
     touch-action: none !important;
 }
 
-/* Prevent any transforms from affecting left column and disable scrolling */
+/* Prevent Scroll Interference on Left Column */
 .left-column, .left-column * {
     will-change: auto !important;
     overscroll-behavior: none !important;
@@ -342,17 +349,18 @@ body, p, span, div, a, button {
     scroll-behavior: auto !important;
 }
 
+/* Scrollable Right Column Content Area */
 .right-column {
     width: 55vw;
     margin-left: 50%;
     padding: 5rem 6rem 6rem 8rem;
     position: relative;
-    z-index: 1; /* Ensure content appears above glass panels */
+    z-index: 1;
     min-height: 100vh;
     max-width: 900px;
 }
 
-/* Hero Section */
+/* Hero Section Styling */
 .hero-content {
     max-width: 100%;
     position: relative;
@@ -380,12 +388,12 @@ body, p, span, div, a, button {
 .hero-description {
     font-size: 16px;
     color: #64748b;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0rem;
     line-height: 1.6;
     max-width: 90%;
 }
 
-/* Hero Navigation */
+/* Hero Navigation System */
 .hero-nav {
     display: flex;
     flex-direction: column;
@@ -477,11 +485,12 @@ body, p, span, div, a, button {
 }
 
 .section-title {
-    font-size: 24px;
+    font-size: 16px;
     font-weight: 700;
     color: #e2e8f0;
     margin-bottom: 2rem;
-    display: none;
+    display: block;
+    text-transform: uppercase;
 }
 
 .mobile-only {
@@ -540,7 +549,7 @@ body, p, span, div, a, button {
 .experience-list {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 0rem;
 }
 
 .experience-item {
@@ -561,6 +570,16 @@ body, p, span, div, a, button {
 /* Education Section - wider first column for longer titles */
 .education-section .experience-item {
     grid-template-columns: 120px 1fr;
+}
+
+/* Remove arrow and link functionality for education section */
+.education-section .experience-title a {
+    pointer-events: none;
+    cursor: default;
+}
+
+.education-section .experience-title a::after {
+    display: none;
 }
 
 .experience-item:hover {
@@ -608,6 +627,16 @@ body, p, span, div, a, button {
     color: var(--accent-color);
 }
 
+/* Hover effect for experience titles without links */
+.experience-item:hover .experience-title {
+    color: var(--accent-color);
+}
+
+/* But keep linked titles using their own hover color */
+.experience-item:hover .experience-title a {
+    color: var(--accent-color);
+}
+
 .experience-title a::after {
     content: '';
     display: inline-block;
@@ -640,7 +669,7 @@ body, p, span, div, a, button {
     color: var(--accent-color);
     padding: 0.375rem 0.75rem;
     border-radius: 9999px;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 500;
     line-height: 1.5;
     transition: all 0.3s ease;
@@ -653,7 +682,7 @@ body, p, span, div, a, button {
 
 /* Resume Link */
 .resume-link {
-    margin-top: 3rem;
+    margin-top: 0rem;
 }
 
 .resume-btn-full {
@@ -684,6 +713,7 @@ body, p, span, div, a, button {
     display: flex;
     flex-direction: column;
     gap: 0;
+    
 }
 
 .project-item {
@@ -853,6 +883,16 @@ body, p, span, div, a, button {
     transform: translate(0.125rem, -0.125rem);
 }
 
+/* Hover effect for project titles without links */
+.project-item:hover .project-title {
+    color: var(--accent-color);
+}
+
+/* But keep linked project titles using their own hover color */
+.project-item:hover .project-title a {
+    color: var(--accent-color);
+}
+
 .project-description {
     color: #64748b;
     margin-bottom: 1rem;
@@ -879,9 +919,9 @@ body, p, span, div, a, button {
 .project-skills .skill-tag {
     background: rgba(45, 212, 191, 0.1);
     color: var(--accent-color);
-    padding: 0.25rem 0.75rem;
+    padding: 0.375rem 0.75rem;
     border-radius: 9999px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     line-height: 1.5;
     transition: all 0.3s ease;
@@ -894,13 +934,13 @@ body, p, span, div, a, button {
 
 /* Archive Link */
 .archive-link {
-    margin-top: 3rem;
+    margin-top: 1rem;
 }
 
 .archive-btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0rem;
     color: #e2e8f0;
     text-decoration: none;
     font-weight: 600;
@@ -920,7 +960,7 @@ body, p, span, div, a, button {
     transform: translate(0.25rem, -0.25rem);
 }
 
-/* Writing Section */
+/* Writing Section 
 .writing-list {
     display: flex;
     flex-direction: column;
@@ -1012,11 +1052,11 @@ body, p, span, div, a, button {
 .writing-title a:hover::after {
     transform: translate(0.125rem, -0.125rem);
 }
-
+*/
 /* Footer */
 .footer {
-    margin-top: 6rem;
-    padding: 3rem 0;
+    margin-top: 0rem;
+    padding: 0rem ;
 }
 
 .footer-content p {
@@ -1129,7 +1169,10 @@ button,
     box-shadow: 0 0 20px rgba(100, 255, 218, 0.3);
 }
 
-/* Particle Background Effect */
+/**
+ * Ambient Particle Background System
+ * Creates subtle floating particles for atmospheric effect
+ */
 .particles {
     position: fixed;
     top: 0;
@@ -1300,13 +1343,14 @@ button,
     );
 }
 
-/* Mobile responsive adjustments now handled by JavaScript */
+/**
+ * ====================================================
+ * RESPONSIVE DESIGN SYSTEM
+ * Mobile-first approach with optimized touch interactions
+ * ====================================================
+ */
 
-/* =============================================== */
-/* RESPONSIVE DESIGN - ALL MEDIA QUERIES BELOW   */
-/* =============================================== */
-
-/* Responsive Design */
+/* Mobile Viewport and Scroll Optimization */
 @media (max-width: 768px) {
     html {
         overflow-y: scroll !important;
@@ -1330,14 +1374,12 @@ button,
         position: relative !important;
     }
     
-    /* Force reset ALL containers that might block scrolling */
+    /* Global Box Model Reset for Mobile */
     *,
     *::before,
     *::after {
         box-sizing: border-box !important;
     }
-    
-    /* Reset ANY potential scroll-blocking containers */
     div, section, header, main, article, aside, nav, 
     .viewport, .container, .wrapper, .page-wrapper, 
     .hero, .hero-section, .landing, .fullscreen,
@@ -1741,7 +1783,7 @@ button,
     
     .project-image {
         width: 100%;
-        height: 180px;
+        height: 80px;
         border-radius: 6px;
         object-fit: cover;
         margin-bottom: 1rem;
@@ -1882,7 +1924,7 @@ button,
     }
     
     .project-image {
-        height: 160px;
+        height: 130px;
     }
 }
 
@@ -1932,5 +1974,117 @@ button,
     
     .project-image {
         height: 140px;
+    }
+}
+
+/**
+ * Animated Cat Background Element
+ * Creates playful cat animation in bottom corner
+ */
+#marco {
+    width: 700px;
+    height: 150px;
+    position: fixed;
+    bottom: 0;
+    left:60px;
+    overflow: hidden;
+    border-radius: 16px 16px 0 0;
+    z-index: 50;
+    pointer-events: none;
+}
+
+#cielo {
+    border-radius: 16px 16px 0 0;
+    width: 600px;
+    height: 300px;
+    position: absolute;
+    z-index: -30;
+    top: 0;
+}
+
+#edificios {
+
+    height: 150px;
+    width: 400px;
+    z-index: -10;
+    top: 0;
+    background-position: 0px 0px;
+    background-repeat: repeat-x;
+    background-size: 800px 150px;
+    -webkit-animation: animar_edificios 120s linear infinite;
+    -ms-animation: animar_edificios 120s linear infinite;
+    -moz-animation: animar_edificios 120s linear infinite;
+    animation: animar_edificios 120s linear infinite;
+    position: absolute;
+}
+
+/* Building animation */
+@keyframes animar_edificios {
+    from { background-position: 0 0; }
+    to { background-position: 100% 0; }
+}
+@-webkit-keyframes animar_edificios {
+    from { background-position: 0 0; }
+    to { background-position: 100% 0; }
+}
+@-ms-keyframes animar_edificios {
+    from { background-position: 0 0; }
+    to { background-position: 100% 0; }
+}
+@-moz-keyframes animar_edificios {
+    from { background-position: 0 0; }
+    to { background-position: 100% 0; }
+}
+
+
+#muro {
+    height: 8em;
+    width: 100%;
+    bottom: 0px;
+    position: absolute;
+}
+
+#gato {
+    background: url('https://res.cloudinary.com/pastelitos/image/upload/v1610526571/eva/gatito_pushui.svg');
+    height: 90px;
+    width: 153px;
+    margin-top: 1em;
+    margin-left: 1em;
+    z-index: 10;
+    position: absolute;
+    background-size: 2440px 90px;
+    -webkit-animation: sprite-animation 1.2s steps(16, end) infinite;
+    -moz-animation: sprite-animation 1.2s steps(16, end) infinite;
+    -ms-animation: sprite-animation 1.2s steps(16, end) infinite;
+    animation: sprite-animation 1.2s steps(16, end) infinite;
+}
+
+@-webkit-keyframes sprite-animation {
+    from { background-position: 0 0; }
+    to { background-position: -2440px 0; }
+}
+
+@-ms-keyframes sprite-animation {
+    from { background-position: 0 0; }
+    to { background-position: -2440px 0; }
+}
+
+@-moz-keyframes sprite-animation {
+    from { background-position: 0 0; }
+    to { background-position: -2440px 0; }
+}
+
+@keyframes sprite-animation {
+    from { background-position: 0 0; }
+    to { background-position: -2440px 0; }
+}
+
+/**
+ * Mobile Optimization for Cat Animation
+ * Hide decorative animation on smaller screens to improve performance
+ */
+@media (max-width: 768px) {
+    #marco {
+        display: none;
     }
 }

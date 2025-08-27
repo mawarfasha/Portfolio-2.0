@@ -1,48 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Character Encoding and Viewport Configuration -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Information -->
     <title>Portfolio of Mawar Fasha</title>
     <meta name="description" content="Information Technology student passionate about web development and sustainable solutions.">
     
-    <!-- Fonts -->
+    <!-- External Font Resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- CSS -->
+    <!-- Stylesheet Integration -->
     <link rel="stylesheet" href="css/style.css">
     
-    <!-- GSAP -->
+    <!-- Animation Library - GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
     
-    <!-- Immediate scroll fix -->
+    <!-- Page Load Optimization Script -->
     <script>
-        // Run immediately to prevent any automatic scrolling
+        /**
+         * Immediate scroll position management
+         * Prevents unwanted auto-scrolling during page initialization
+         */
         (function() {
-            // Disable scroll restoration
             if ('scrollRestoration' in history) {
                 history.scrollRestoration = 'manual';
             }
             
-            // Force to top immediately
             window.scrollTo(0, 0);
             
-            // Override any scroll attempts
             let scrollBlocked = true;
             const originalScrollTo = window.scrollTo;
             window.scrollTo = function(x, y) {
                 if (scrollBlocked && y !== 0) {
-                    return; // Block any non-zero scroll attempts
+                    return;
                 }
                 originalScrollTo.call(this, x, y);
             };
             
-            // Unblock scrolling after 2 seconds
             setTimeout(() => {
                 scrollBlocked = false;
                 window.scrollTo = originalScrollTo;
@@ -51,7 +53,7 @@
     </script>
 </head>
 <body>
-    <!-- Navigation -->
+    <!-- Primary Navigation System -->
     <nav class="nav">
         <div class="nav-container">
             <div class="nav-logo">
@@ -67,28 +69,37 @@
         </div>
     </nav>
 
-    <!-- Mobile Menu Toggle -->
+    <!-- Mobile Navigation Toggle -->
     <div class="hamburger">
         <span></span>
         <span></span>
         <span></span>
     </div>
 
-    <!-- Custom Cursor -->
+    <!-- Interactive Cursor Elements -->
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
     
-    <!-- BLOB CURSOR FOLLOWER -->
+    <!-- Advanced Blob Cursor System -->
     <div id="cursor-follower">
         <div id="blob"></div>
     </div>
 
-    <!-- Main Content -->
+    <!-- Animated Cat Background Element -->
+    <div id="marco">
+        <div id="cielo"></div>
+        <div id="luna"></div>
+        <div id="gato"></div>
+        <div id="muro"></div>
+        <div id="edificios"></div>
+    </div>
+
+    <!-- Portfolio Content Structure -->
     <main class="main">
-        <!-- Left Column - Fixed -->
+        <!-- Fixed Hero Section - Left Column -->
         <div class="left-column">
             <div class="hero-top">
-                <!-- Hero Section -->
+                <!-- Hero Introduction Section -->
                 <section id="hero" class="hero section">
                     <div class="hero-content">
                         <h1 class="hero-name">Mawar Fasha</h1>
@@ -101,7 +112,7 @@
             </div>
             
             <div class="hero-middle">
-                <!-- Navigation Links -->
+                <!-- Section Navigation Menu -->
                 <nav class="hero-nav">
                     <a href="#about" class="hero-nav-link active">
                         <span class="nav-indicator"></span>
@@ -123,14 +134,14 @@
             </div>
 
             <div class="hero-bottom">
-                <!-- Social Links -->
+                <!-- Social Media Links -->
                 <div class="social-links">
                     <a href="https://github.com/mawarfasha" target="_blank" aria-label="GitHub" data-cursor-hover data-cursor-parallax>
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                         </svg>
                     </a>
-                    <a href="https://linkedin.com/in/mawar-fasha-roslan" target="_blank" aria-label="LinkedIn" data-cursor-hover data-cursor-parallax>
+                    <a href="https://linkedin.com/in/mawarfasha" target="_blank" aria-label="LinkedIn" data-cursor-hover data-cursor-parallax>
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                         </svg>
@@ -154,20 +165,16 @@
             <!-- About Section -->
             <section id="about" class="section about-section">
                 <div class="section-content">
-                    <h2 class="section-title mobile-only">About</h2>
+                    <h2 class="section-title">About</h2>
                     <div class="about-text">
                         <p>
-                            I'm an Information Technology student at Universiti Teknologi PETRONAS (UTP) passionate about creating meaningful digital solutions that make a positive impact on communities and the environment. My interests lie at the intersection of technology, sustainability, and social good.
+                            I’m a tech-driven problem solver passionate about building scalable, accessible, and impactful digital solutions. With hands-on experience leading teams, shipping full-stack projects, and managing high-stakes events, I combine technical expertise with strong leadership.
                         </p>
                         <p>
-                            Currently pursuing my Bachelor's degree in Information Technology, I'm developing skills in programming languages like <a href="#" target="_blank">Python</a>, <a href="#" target="_blank">C++</a>, <a href="#" target="_blank">JavaScript</a>, and <a href="#" target="_blank">SQL</a>. I'm particularly interested in how technology can be leveraged to address environmental challenges and promote sustainable practices.
+                            From founding my own startup project to directing 20-person teams and delivering solutions for 300+ participants, I bring proven ability to turn ideas into outcomes.
+                            Skilled in <a href="#" target="_blank">Python</a>, <a href="#" target="_blank">JavaScript</a>, <a href="#" target="_blank">React</a>, and modern frameworks, I excel at translating complex challenges into efficient systems that improve performance, engagement, and usability.
                         </p>
-                        <p>
-                            I have experience in leadership roles, having served as a <a href="#" target="_blank">Project Director</a> for various community initiatives and working as a <a href="#" target="_blank">Mathematics Tutor</a> to help fellow students succeed in their academic journey. These experiences have strengthened my communication skills and passion for education.
-                        </p>
-                        <p>
-                            When I'm not coding, you can find me tutoring mathematics, leading community projects, or exploring new ways to integrate sustainability into technology solutions. I believe in the power of education and mentorship to create positive change in our communities.
-                        </p>
+
                     </div>
                 </div>
             </section>
@@ -175,28 +182,29 @@
             <!-- Education Section -->
             <section id="education" class="section education-section">
                 <div class="section-content">
-                    <h2 class="section-title mobile-only">Education</h2>
+                    <h2 class="section-title">Education</h2>
                     
                     <div class="experience-list">
                         <div class="experience-item">
-                            <div class="experience-period">2022 — 2026</div>
+                            <div class="experience-period">2022 — 2027</div>
                             <div class="experience-content">
                                 <h3 class="experience-title">
-                                    <a href="https://www.utp.edu.my" target="_blank">Bachelor's Degree in Information Technology · Universiti Teknologi PETRONAS</a>
+                                    <a href="https://www.utp.edu.my" target="_blank">B. Information Technology (Hons.) · Universiti Teknologi PETRONAS</a>
                                 </h3>
                                 <p class="experience-description">
-                                    Pursuing a comprehensive degree in Information Technology with focus on software development, database systems, web technologies, and sustainable computing solutions. Actively participating in programming competitions and community projects.
+                                    Pursuing a comprehensive degree in Information Technology with focus on software development, database systems, web technologies, and sustainable computing solutions. Currently maintaining a strong CGPA of 3.87 while actively participating in programming competitions and community projects.
                                 </p>
                                 <div class="experience-skills">
-                                    <span class="skill-tag">HTML</span>
-                                    <span class="skill-tag">C++</span>
-                                    <span class="skill-tag">C (SEED Labs)</span>
+                                    <span class="skill-tag">3.87 CGPA</span>
                                     <span class="skill-tag">Python</span>
+                                    <span class="skill-tag">C++</span>
                                     <span class="skill-tag">JavaScript</span>
-                                    <span class="skill-tag">PHP</span>
-                                    <span class="skill-tag">SQL (MySQL)</span>
+                                    <span class="skill-tag">SQL</span>
+                                    <span class="skill-tag">HTML</span>
+                                    <span class="skill-tag">CSS</span>
                                     <span class="skill-tag">Visual Basic</span>
-                                    <span class="skill-tag">Bash/Shell Scripting</span>
+                                    <span class="skill-tag">React.js</span>
+                                    <span class="skill-tag">Astro</span>
                                 </div>
                             </div>
                         </div>
@@ -208,12 +216,11 @@
                                     <a href="https://www.utp.edu.my" target="_blank">Foundation in Computing · Universiti Teknologi PETRONAS</a>
                                 </h3>
                                 <p class="experience-description">
-                                    Completed comprehensive foundation studies in computing, building strong fundamentals in mathematics, analytic and basic programming concepts. Successfully transitioned to Information Technology degree program.
+                                    Completed comprehensive foundation studies in computing, building strong fundamentals in mathematics, analytical thinking and basic programming concepts. Successfully transitioned to Information Technology degree program with excellent academic performance.
                                 </p>
                                 <div class="experience-skills">
-                                    <span class="skill-tag">3.47</span>
-                                    <span class="skill-tag">Mathematics</span>
-                                    <span class="skill-tag">Analytic</span>
+                                    <span class="skill-tag">Quantitative Analysis</span>
+                                    <span class="skill-tag">Analytical Thinking</span>
                                     <span class="skill-tag">Programming Fundamentals</span>
                                     <span class="skill-tag">Engineering Principles</span>
                                     <span class="skill-tag">Business Management</span>
@@ -225,18 +232,20 @@
                             <div class="experience-period">2015 — 2019</div>
                             <div class="experience-content">
                                 <h3 class="experience-title">
-                                    <a href="#" target="_blank">SPM (Malaysian Certificate of Education) · SMK Bandar Baru Sg Buloh</a>
+                                    <a href="#" target="_blank">Malaysian Certificate of Education · SMK Bandar Baru Sg Buloh</a>
                                 </h3>
                                 <p class="experience-description">
-                                    Achieved excellent results in SPM with strong performance in Mathematics, Computer Sciences and Languages. Developed foundational knowledge that supported transition to engineering studies.
+                                    Achieved excellent results in SPM (Malaysian Certificate of Education) with 7A performance, demonstrating strong academic foundation in Mathematics, Computer Sciences and Languages. This academic excellence provided the foundation for transition to engineering studies.
                                 </p>
                                 <div class="experience-skills">
-                                    <span class="skill-tag">7A</span>
+                                    <span class="skill-tag">7A's</span>
                                     <span class="skill-tag">Computer Sciences</span>
                                     <span class="skill-tag">Mathematics</span>
                                     <span class="skill-tag">Science</span>
                                     <span class="skill-tag">English</span>
                                     <span class="skill-tag">Malay</span>
+                                    <span class="skill-tag">History</span>
+                                    <span class="skill-tag">Islamic Studies</span>
                                 </div>
                             </div>
                         </div>
@@ -247,84 +256,108 @@
             <!-- Experience Section -->
             <section id="experience" class="section experience-section">
                 <div class="section-content">
-                    <h2 class="section-title mobile-only">Experience</h2>
+                    <h2 class="section-title">Experience</h2>
                     
                     <div class="experience-list">                        
                         <div class="experience-item">
-                            <div class="experience-period">2024</div>
+                            <div class="experience-period">2025 — Present</div>
                             <div class="experience-content">
                                 <h3 class="experience-title">
-                                    <a href="#" target="_blank">Project Director (OMC 2024) · Centre for Foundation Studies UTP</a>
+                                    <a href="https://ficostudyspace.vercel.app/" target="_blank">Founder & Tech Lead · Fico-Project (Self-Startup)</a>
                                 </h3>
                                 <p class="experience-description">
-                                  Led a team in organizing and managing the OMC Competition, handling event planning, logistics, execution, and addressing team management challenges to ensure smooth communication and task delegation.  
+                                  Delivered full-stack web solutions with Astro, TypeScript, JavaScript, MDX, and CSS, ensuring scalable and maintainable codebases. Built high-performance productivity platforms, including a timelapse study tool that increased user efficiency by 30%. Applied Agile methodology (Scrum) to manage sprints, prioritize backlog, and coordinate iterative releases.
                                 </p>
                                 <div class="experience-skills">
-                                    <span class="skill-tag">Leadership</span>
-                                    <span class="skill-tag">Team Coordination</span>
-                                    <span class="skill-tag">Sustainability</span>
+                                    <span class="skill-tag">Astro</span>
+                                    <span class="skill-tag">TypeScript</span>
+                                    <span class="skill-tag">JavaScript</span>
+                                    <span class="skill-tag">MDX</span>
+                                    <span class="skill-tag">CSS</span>
+                                    <span class="skill-tag">Full-Stack Development</span>
+                                    <span class="skill-tag">Agile/Scrum</span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="experience-item">
-                            <div class="experience-period">2024</div>
+                            <div class="experience-period">2024 — 2024</div>
                             <div class="experience-content">
                                 <h3 class="experience-title">
-                                    <a href="#" target="_blank">Project Director (ECOSCAPE) · Corporate Social Responsibility Project</a>
+                                    Project Director · OH MY CODE! 2024 (UTP)
                                 </h3>
                                 <p class="experience-description">
-                                   Directed project initiatives focused on environmental sustainability, aligning efforts with SDG 11: Sustainable Cities and Communities.  Managed a cross-functional team, guiding them through project phases with a focus on creating sustainable urban solutions.  
+                                   Managed end-to-end project execution for 20 team members using Agile methodology (Scrum), facilitating sprints, stand-ups, and backlog management to ensure 95% on-time task completion. Streamlined stakeholder alignment and communication, driving maximum participant engagement for 300+ attendees.
                                 </p>
                                 <div class="experience-skills">
-                                    <span class="skill-tag">Leadership</span>
                                     <span class="skill-tag">Project Management</span>
-                                    <span class="skill-tag">Team Coordination</span>
-                                    <span class="skill-tag">Community Engagement</span>
-                                    <span class="skill-tag">Sustainability</span>
+                                    <span class="skill-tag">Agile/Scrum</span>
+                                    <span class="skill-tag">Team Leadership</span>
+                                    <span class="skill-tag">Stakeholder Management</span>
+                                    <span class="skill-tag">Event Management</span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="experience-item">
-                            <div class="experience-period">2023</div>
+                            <div class="experience-period">2024 — 2024</div>
                             <div class="experience-content">
                                 <h3 class="experience-title">
-                                    <a href="#" target="_blank">2nd Runner Up · "OH MY CODE!" Programming Competition</a>
+                                    Math Tutor · Centre of Foundation Studies (UTP)
                                 </h3>
                                 <p class="experience-description">
-                                    Led the technical development of a user-friendly web application that simplified government housing applications by eliminating the need for third-party interactions. Streamlined the application process, showcasing strong technical skills and innovative problem-solving.
-                                <div class="experience-skills">
-                                    <span class="skill-tag">Competitive Programming</span>
-                                    <span class="skill-tag">Algorithm Design</span>
-                                    <span class="skill-tag">Problem Solving</span>
-                                    <span class="skill-tag">Time Management</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="experience-item">
-                            <div class="experience-period">2023 — 2024</div>
-                            <div class="experience-content">
-                                <h3 class="experience-title">
-                                    <a href="#" target="_blank">Mathematics Tutor · Freelance</a>
-                                </h3>
-                                <p class="experience-description">
-                                    Provide personalized mathematics tutoring to university and secondary school students, helping them improve their understanding of complex mathematical concepts and achieve better academic performance. Develop customized learning materials and teaching strategies.
-                                </p>
+                                    Delivered focused academic support in Quantitative Analysis II, helping students grasp complex concepts through clear explanations and structured guidance. Created tailored learning materials and strategies, enhancing student performance by 20% on assessments.
                                 <div class="experience-skills">
                                     <span class="skill-tag">Mathematics</span>
                                     <span class="skill-tag">Teaching</span>
-                                    <span class="skill-tag">Communication</span>
-                                    <span class="skill-tag">Problem Solving</span>
-                                    <span class="skill-tag">Mentoring</span>
+                                    <span class="skill-tag">Quantitative Analysis</span>
+                                    <span class="skill-tag">Curriculum Development</span>
+                                    <span class="skill-tag">Student Assessment</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="experience-item">
+                            <div class="experience-period">2024 — 2024</div>
+                            <div class="experience-content">
+                                <h3 class="experience-title">
+                                    Project Leader · DOWN-TO-EARTH 2023: ECOSCAPE
+                                </h3>
+                                <p class="experience-description">
+                                    Led a cross-functional team to develop sustainable urban solutions, contributing to the vision of making Perak a green city and achieving SDG-aligned outcomes. Secured partnerships with 3 local organizations, enhancing project resources and promoting eco-friendly community initiatives.
+                                </p>
+                                <div class="experience-skills">
+                                    <span class="skill-tag">Project Leadership</span>
+                                    <span class="skill-tag">Sustainability</span>
+                                    <span class="skill-tag">SDG Implementation</span>
+                                    <span class="skill-tag">Partnership Development</span>
+                                    <span class="skill-tag">Community Engagement</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="experience-item">
+                            <div class="experience-period">2023 — 2023</div>
+                            <div class="experience-content">
+                                <h3 class="experience-title">
+                                    CTO & 2nd Runner Up · OH MY CODE! Competition 2023
+                                </h3>
+                                <p class="experience-description">
+                                    Led the technical development of a user-friendly web application that simplified government housing applications by eliminating the need for third-party interactions. Streamlined the application process, resulting in a 2nd Runner Up finish in the competition, showcasing strong technical skills and innovative problem-solving.
+                                </p>
+                                <div class="experience-skills">
+                                    <span class="skill-tag">CTO Role</span>
+                                    <span class="skill-tag">Web Application Development</span>
+                                    <span class="skill-tag">Government Systems</span>
+                                    <span class="skill-tag">UX/UI Design</span>
+                                    <span class="skill-tag">Competitive Programming</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="resume-link">
-                        <a href="#" target="_blank" class="resume-btn-full">
+                        <a href="resume.pdf" target="_blank" class="resume-btn-full">
                             View Full Résumé
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M7 17L17 7M17 7H7M17 7V17"/>
@@ -337,7 +370,7 @@
             <!-- Projects Section -->
             <section id="projects" class="section projects-section">
                 <div class="section-content">
-                    <h2 class="section-title mobile-only">Projects</h2>
+                    <h2 class="section-title">Projects</h2>
                     
                     <div class="projects-list">
                         <div class="project-item">
@@ -374,16 +407,14 @@
                             <div class="project-image">
                                 <img src="images/Down-to-Earth.jpeg" alt="DOWN-TO-EARTH Sustainability Project" loading="lazy">
                                 <div class="project-overlay">
-                                    <a href="#" target="_blank" aria-label="View Project">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                                        </svg>
-                                    </a>
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                                    </svg>
                                 </div>
                             </div>
                             <div class="project-content">
                                 <h3 class="project-title">
-                                    <a href="#" target="_blank">DOWN-TO-EARTH Sustainability Project</a>
+                                    DOWN-TO-EARTH Sustainability Project
                                 </h3>
                                 <p class="project-description">
                                     A comprehensive community initiative focused on promoting environmental sustainability and awareness. Led project development from conception to implementation, engaging community members in sustainable practices and environmental education.
@@ -402,26 +433,24 @@
                             <div class="project-image">
                                 <img src="images/OMC project director 2.JPG" alt="Programming Competition Solutions" loading="lazy">
                                 <div class="project-overlay">
-                                    <a href="#" target="_blank" aria-label="View Project">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                                        </svg>
-                                    </a>
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                                    </svg>
                                 </div>
                             </div>
                             <div class="project-content">
                                 <h3 class="project-title">
-                                    <a href="#" target="_blank">"OH MY CODE!" Competition Solutions</a>
+                                    "OH MY CODE!" Competition Direction & Organization
                                 </h3>
                                 <p class="project-description">
-                                    Collection of algorithmic solutions and programming challenges completed during competitive programming events. Demonstrates problem-solving skills, algorithmic thinking, and proficiency in multiple programming languages.
+                                    Led and directed the complete organization of the "OH MY CODE!" programming competition as Project Director. Managed end-to-end event execution for 300+ participants, coordinated 20 team members, and ensured seamless competition logistics. Successfully delivered a high-impact programming competition that challenged participants across multiple algorithmic domains.
                                 </p>
                                 <div class="project-skills">
-                                    <span class="skill-tag">Python</span>
-                                    <span class="skill-tag">C++</span>
-                                    <span class="skill-tag">Algorithms</span>
-                                    <span class="skill-tag">Data Structures</span>
-                                    <span class="skill-tag">Problem Solving</span>
+                                    <span class="skill-tag">Event Direction</span>
+                                    <span class="skill-tag">Project Management</span>
+                                    <span class="skill-tag">Team Leadership</span>
+                                    <span class="skill-tag">Competition Design</span>
+                                    <span class="skill-tag">Stakeholder Management</span>
                                 </div>
                             </div>
                         </div>
@@ -498,7 +527,7 @@
         </div>
     </main>
 
-    <!-- Scripts -->
+    <!-- Application Scripts -->
     <script src="js/main.js"></script>
 </body>
 </html>

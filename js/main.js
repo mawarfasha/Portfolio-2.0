@@ -1,52 +1,59 @@
-// Register GSAP plugins
+/**
+ * Portfolio Animation System
+ * Handles all interactive animations, scroll effects, and user experience enhancements
+ * Built with GSAP for optimal performance
+ */
+
+// Initialize GSAP plugins
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, TextPlugin);
 
-// Fix viewport height on mobile devices
+/**
+ * Viewport height fix for mobile devices
+ * Addresses the mobile viewport height issue with dynamic toolbars
+ */
 function setVhProperty() {
     const vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
 }
 
-// Set initial viewport height
 setVhProperty();
 
-// Update viewport height on resize/orientation change
+// Update viewport on resize and orientation changes
 window.addEventListener('resize', setVhProperty);
 window.addEventListener('orientationchange', () => {
     setTimeout(setVhProperty, 100);
 });
 
-// Disable auto-refresh and scroll restoration
+// Configure ScrollTrigger for optimal performance
 ScrollTrigger.config({
     autoRefreshEvents: "none"
 });
 
-// Prevent any automatic scrolling and keep page at top
+// Prevent unwanted scroll behavior
 window.addEventListener('beforeunload', function() {
     window.scrollTo(0, 0);
 });
 
-// Prevent scroll restoration
 if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
 }
 
-// Initialize the application when DOM is loaded
+// Application initialization
 document.addEventListener('DOMContentLoaded', function() {
-    // Force page to top and prevent any scroll triggers from firing initially
     window.scrollTo(0, 0);
     
-    // Delay initialization to ensure page is stable
     setTimeout(() => {
         initApp();
-        // Refresh ScrollTrigger after initialization
         ScrollTrigger.refresh();
     }, 100);
 });
 
+/**
+ * Main application initialization
+ * Orchestrates all interactive components
+ */
 function initApp() {
-    // Initialize all components
-    initBlobCursor(); // Replace initCursor with blob cursor
+    initBlobCursor();
     initNavigation();
     initScrollAnimations();
     initSmoothScroll();
@@ -55,16 +62,17 @@ function initApp() {
     initHoverEffects();
     initActiveSection();
     initMobileMenu();
-    initGlitchEffect(); // Add glitch effect
+    initGlitchEffect();
 }
 
-// === BLOB CURSOR FOLLOWER ===
+/**
+ * Blob cursor implementation
+ * Creates an interactive blob that follows mouse movement
+ * Disabled on touch devices for performance
+ */
 function initBlobCursor() {
-    // Check if device supports hover (not a touch device)
     const isTouchDevice = window.matchMedia("(hover: none)").matches;
     if (isTouchDevice) {
-        console.log('Touch device detected, skipping blob cursor');
-        // Show default cursor on touch devices
         const defaultCursor = document.querySelector('.cursor');
         const defaultFollower = document.querySelector('.cursor-follower');
         if (defaultCursor) defaultCursor.style.display = 'block';
@@ -72,30 +80,21 @@ function initBlobCursor() {
         return;
     }
 
-    // Variables for smooth animation
-    var mouse = { x: -1000, y: -1000 }; // Start off-screen
-    var pos = { x: -1000, y: -1000 }; // Start off-screen
-    var ratio = 0.65; // Controls how closely the blob follows the cursor (0-1)
+    var mouse = { x: -1000, y: -1000 };
+    var pos = { x: -1000, y: -1000 };
+    var ratio = 0.65;
     
     var blob = document.getElementById("blob");
     var magicCursor = document.getElementById("cursor-follower");
 
-    if (!blob || !magicCursor) {
-        console.log('Blob elements not found');
-        return;
-    }
+    if (!blob || !magicCursor) return;
 
-    console.log('Initializing blob cursor...');
-
-    // Set initial position off-screen
     blob.style.left = '-1000px';
     blob.style.top = '-1000px';
 
-    // Track mouse movement
     document.addEventListener("mousemove", mouseMove);
 
     function updatePosition() {
-        // Smoothly interpolate blob position towards mouse position
         pos.x += (mouse.x - pos.x) * ratio;
         pos.y += (mouse.y - pos.y) * ratio;
         blob.style.left = `${pos.x}px`;
@@ -103,30 +102,25 @@ function initBlobCursor() {
     }
 
     function mouseMove(e) {
-        // Use clientX/clientY for viewport-relative positioning
         mouse.x = e.clientX;
         mouse.y = e.clientY;
         
-        // Show the blob after first mouse movement
         if (blob.style.opacity === '0' || blob.style.opacity === '') {
             blob.style.opacity = '0.15';
         }
     }
 
-    // Animation loop using requestAnimationFrame for smooth performance
     function animate() {
         updatePosition();
         requestAnimationFrame(animate);
     }
     animate();
 
-    // Add hover effects for elements with data-cursor-hover attribute
+    // Enhanced hover effects for interactive elements
     let interactiveElements = document.querySelectorAll("[data-cursor-hover]");
-    console.log('Found interactive elements:', interactiveElements.length);
     
     interactiveElements.forEach(function (element) {
         element.addEventListener("mouseenter", function (e) {
-            // Increase blob intensity and add extra glow on hover (more subtle)
             blob.style.opacity = '0.25';
             blob.style.filter = 'blur(120px) brightness(1.1)';
             blob.style.boxShadow = `
@@ -139,7 +133,6 @@ function initBlobCursor() {
         });
 
         element.addEventListener("mouseleave", function (e) {
-            // Reset blob to normal state when leaving (subtle default)
             blob.style.opacity = '0.15';
             blob.style.filter = 'blur(120px) brightness(0.9)';
             blob.style.boxShadow = `
@@ -149,21 +142,20 @@ function initBlobCursor() {
             `;
             blob.style.transition = 'all 0.3s ease';
             
-            // Reset parallax transform if element has parallax
             if (element && element.hasAttribute("data-cursor-parallax")) {
                 element.style.transform = 'scale(1) translate(0px, 0px)';
                 element.style.transition = 'transform 0.3s ease';
             }
         });
 
-        // Add parallax movement effect
+        // Parallax movement on hover
         element.addEventListener("mousemove", function (e) {
             if (element && element.hasAttribute("data-cursor-parallax")) {
                 var boundingRect = element.getBoundingClientRect();
                 var relX = e.clientX - boundingRect.left;
                 var relY = e.clientY - boundingRect.top;
                 
-                var movement = 8; // Adjust this value to control movement intensity
+                var movement = 8;
                 var x = ((relX - boundingRect.width / 2) / boundingRect.width) * movement;
                 var y = ((relY - boundingRect.height / 2) / boundingRect.height) * movement;
                 
@@ -173,30 +165,27 @@ function initBlobCursor() {
         });
     });
 
-    // Activate the cursor follower
     magicCursor.classList.add("active");
-    console.log('Blob cursor initialized successfully');
 }
 
-// Navigation functionality
+/**
+ * Navigation behavior management
+ * Handles scroll-based navigation visibility
+ */
 function initNavigation() {
     const nav = document.querySelector('.nav');
-    
-    // Hide/show navigation on scroll
     let lastScrollY = window.scrollY;
     
     window.addEventListener('scroll', () => {
         const currentScrollY = window.scrollY;
         
         if (currentScrollY > lastScrollY && currentScrollY > 100) {
-            // Scrolling down
             gsap.to(nav, {
                 y: -100,
                 duration: 0.3,
                 ease: "power2.out"
             });
         } else {
-            // Scrolling up
             gsap.to(nav, {
                 y: 0,
                 duration: 0.3,
@@ -208,9 +197,12 @@ function initNavigation() {
     });
 }
 
-// Scroll-triggered animations
+/**
+ * Scroll-triggered animation system
+ * Manages all entrance animations and scroll-based effects
+ */
 function initScrollAnimations() {
-    // Ensure left column is always visible, fixed, and non-scrollable
+    // Ensure left column maintains fixed positioning
     gsap.set('.left-column', {
         position: 'fixed',
         top: 0,
@@ -221,10 +213,9 @@ function initScrollAnimations() {
         zIndex: 9999
     });
 
-    // Prevent scroll events on left column (simplified to preserve content)
+    // Prevent scroll interference on fixed column
     const leftColumn = document.querySelector('.left-column');
     if (leftColumn) {
-        // Only prevent wheel scrolling to keep content visible
         leftColumn.addEventListener('wheel', (e) => {
             e.preventDefault();
             e.stopPropagation();
@@ -236,7 +227,7 @@ function initScrollAnimations() {
         }, { passive: false });
     }
 
-    // Animate sections on scroll
+    // Section entrance animations
     gsap.utils.toArray('.section').forEach((section, index) => {
         gsap.fromTo(section, 
             {
@@ -258,7 +249,7 @@ function initScrollAnimations() {
         );
     });
     
-    // Animate experience items
+    // Experience item staggered animations
     gsap.utils.toArray('.experience-item').forEach((item, index) => {
         gsap.fromTo(item,
             {
@@ -280,7 +271,7 @@ function initScrollAnimations() {
         );
     });
     
-    // Animate project items
+    // Project item entrance animations
     gsap.utils.toArray('.project-item').forEach((item, index) => {
         gsap.fromTo(item,
             {
@@ -302,7 +293,7 @@ function initScrollAnimations() {
         );
     });
     
-    // Animate skill tags
+    // Skill tag cascade animation
     gsap.utils.toArray('.skill-tag').forEach((tag, index) => {
         gsap.fromTo(tag,
             {
@@ -313,7 +304,7 @@ function initScrollAnimations() {
                 opacity: 1,
                 transform: "scale(1)",
                 duration: 0.3,
-                delay: index * 0.01,
+                delay: index * 0.005,
                 ease: "back.out(1.7)",
                 scrollTrigger: {
                     trigger: tag,
@@ -323,26 +314,20 @@ function initScrollAnimations() {
             }
         );
     });
-    
-    // Parallax effect for hero section - DISABLED for fixed left column
-    // gsap.to('.hero-content', {
-    //     y: -50,
-    //     scrollTrigger: {
-    //         trigger: '.hero',
-    //         start: "top top",
-    //         end: "bottom top",
-    //         scrub: 1
-    //     }
-    // });
 }
 
-// Smooth scroll for navigation links
+/**
+ * Smooth scrolling implementation
+ * Integrated with navigation system
+ */
 function initSmoothScroll() {
-    // This function is now handled in initActiveSection for better integration
-    console.log('Smooth scroll integrated with navigation');
+    // Handled in initActiveSection for better integration
 }
 
-// Floating particles background
+/**
+ * Particle background system
+ * Creates subtle floating particles for ambient effect
+ */
 function initParticles() {
     const particlesContainer = document.createElement('div');
     particlesContainer.className = 'particles';
@@ -352,7 +337,6 @@ function initParticles() {
         const particle = document.createElement('div');
         particle.className = 'particle';
         
-        // Random position and animation
         const startX = Math.random() * window.innerWidth;
         const endX = startX + (Math.random() - 0.5) * 200;
         const duration = 8 + Math.random() * 4;
@@ -383,15 +367,16 @@ function initParticles() {
         });
     }
     
-    // Create particles periodically
     setInterval(createParticle, 500);
 }
 
-// Loading animation
+/**
+ * Initial page load animation sequence
+ * Orchestrates hero section entrance and text morphing
+ */
 function initLoadingAnimation() {
     const tl = gsap.timeline();
     
-    // Animate hero elements
     tl.fromTo('.hero-name',
         {
             opacity: 0,
@@ -459,21 +444,21 @@ function initLoadingAnimation() {
         "-=0.3"
     );
     
-    // Typewriter effect for hero title - morph from "Information Technology Student" to "Full-Stack Developer"
-    console.log('Starting text morphing animation...');
+    // Dynamic text morphing effect
     gsap.to('.hero-title', {
         duration: 2.5,
         text: "Full-Stack Developer",
         ease: "power2.inOut",
-        delay: 0.9,
-        onStart: () => console.log('Text morphing started'),
-        onComplete: () => console.log('Text morphing completed')
+        delay: 0.9
     });
 }
 
-// Hover effects
+/**
+ * Interactive hover effect system
+ * Manages all hover states and micro-interactions
+ */
 function initHoverEffects() {
-    // Experience items hover
+    // Experience item hover interactions
     document.querySelectorAll('.experience-item').forEach(item => {
         item.addEventListener('mouseenter', () => {
             gsap.to(item, {
@@ -504,7 +489,7 @@ function initHoverEffects() {
         });
     });
     
-    // Project items hover
+    // Project item image scaling
     document.querySelectorAll('.project-item').forEach(item => {
         const image = item.querySelector('.project-image img');
         
@@ -525,12 +510,12 @@ function initHoverEffects() {
         });
     });
     
-    // Skill tags hover
+    // Skill tag interactive scaling
     document.querySelectorAll('.skill-tag').forEach(tag => {
         tag.addEventListener('mouseenter', () => {
             gsap.to(tag, {
                 scale: 1.1,
-                duration: 0.2,
+                duration: 0.3,
                 ease: "power2.out"
             });
         });
@@ -538,13 +523,13 @@ function initHoverEffects() {
         tag.addEventListener('mouseleave', () => {
             gsap.to(tag, {
                 scale: 1,
-                duration: 0.2,
+                duration: 0.3,
                 ease: "power2.out"
             });
         });
     });
     
-    // Social links hover
+    // Social link hover animations
     document.querySelectorAll('.social-links a').forEach(link => {
         link.addEventListener('mouseenter', () => {
             gsap.to(link, {
@@ -566,57 +551,41 @@ function initHoverEffects() {
     });
 }
 
-// Active section highlighting
+/**
+ * Navigation state management
+ * Handles active section highlighting and smooth scrolling
+ */
 function initActiveSection() {
     const sections = document.querySelectorAll('.section');
     const navLinks = document.querySelectorAll('.hero-nav-link');
     
-    if (sections.length === 0 || navLinks.length === 0) {
-        console.log('Sections or nav links not found');
-        return;
-    }
+    if (sections.length === 0 || navLinks.length === 0) return;
 
-    // Function to update active nav link
     function updateActiveNav(sectionId) {
-        // Remove active class from all links
         navLinks.forEach(link => {
             link.classList.remove('active');
         });
         
-        // Add active class to current link
         const activeLink = document.querySelector(`.hero-nav-link[href="#${sectionId}"]`);
         if (activeLink) {
             activeLink.classList.add('active');
-            console.log('Active section:', sectionId);
         }
     }
 
-    // Set About as default and ensure it stays active until user scrolls significantly
+    // Set initial active state
     updateActiveNav('about');
     
-    // Force About to be active multiple times to ensure it sticks
-    setTimeout(() => {
-        updateActiveNav('about');
-        console.log('Ensuring About stays active (100ms)');
-    }, 100);
-    
-    setTimeout(() => {
-        updateActiveNav('about');
-        console.log('Ensuring About stays active (500ms)');
-    }, 500);
-    
-    setTimeout(() => {
-        updateActiveNav('about');
-        console.log('Ensuring About stays active (1000ms)');
-    }, 1000);
+    // Ensure About remains active during initialization
+    setTimeout(() => updateActiveNav('about'), 100);
+    setTimeout(() => updateActiveNav('about'), 500);
+    setTimeout(() => updateActiveNav('about'), 1000);
 
-    // Start a more responsive intersection observer with minimal delay
+    // Initialize intersection observer for section tracking
     setTimeout(() => {
         const observer = new IntersectionObserver((entries) => {
             let mostVisible = null;
             let highestRatio = 0;
             
-            // Find the section with the highest visibility ratio
             entries.forEach(entry => {
                 if (entry.isIntersecting && entry.intersectionRatio > highestRatio) {
                     mostVisible = entry.target.id;
@@ -624,22 +593,20 @@ function initActiveSection() {
                 }
             });
             
-            // Update navigation if we found a visible section with at least 30% visibility
             if (mostVisible && highestRatio > 0.3) {
                 updateActiveNav(mostVisible);
             }
         }, {
-            threshold: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7], // Multiple thresholds for better detection
-            rootMargin: '-10% 0% -10% 0%' // Less restrictive margins
+            threshold: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7],
+            rootMargin: '-10% 0% -10% 0%'
         });
 
-        // Observe all sections
         sections.forEach(section => {
             observer.observe(section);
         });
-    }, 200); // Reduced delay from 2000ms to 200ms
+    }, 200);
 
-    // Add click handlers to navigation links for smooth scrolling
+    // Smooth scroll navigation
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -647,15 +614,13 @@ function initActiveSection() {
             const target = document.getElementById(targetId);
             
             if (target) {
-                // Update active state immediately when clicked
                 updateActiveNav(targetId);
                 
-                // Smooth scroll to target with proper offset
                 gsap.to(window, {
                     duration: 0.3,
                     scrollTo: {
                         y: target,
-                        offsetY: 20 // Reduced offset since we removed top padding
+                        offsetY: 20
                     },
                     ease: "power1.out"
                 });
@@ -664,7 +629,10 @@ function initActiveSection() {
     });
 }
 
-// Mobile menu
+/**
+ * Mobile navigation system
+ * Handles hamburger menu interactions
+ */
 function initMobileMenu() {
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
@@ -675,7 +643,6 @@ function initMobileMenu() {
         hamburger.classList.toggle('active');
         navMenu.classList.toggle('active');
         
-        // Animate hamburger
         const spans = hamburger.querySelectorAll('span');
         if (hamburger.classList.contains('active')) {
             gsap.to(spans[0], { rotation: 45, y: 6, duration: 0.3 });
@@ -688,7 +655,7 @@ function initMobileMenu() {
         }
     });
     
-    // Close menu when clicking on links
+    // Close menu on link click
     document.querySelectorAll('.nav-menu a').forEach(link => {
         link.addEventListener('click', () => {
             hamburger.classList.remove('active');
@@ -702,7 +669,10 @@ function initMobileMenu() {
     });
 }
 
-// Utility functions
+/**
+ * Utility function for performance optimization
+ * Implements debouncing for event handlers
+ */
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -715,12 +685,15 @@ function debounce(func, wait) {
     };
 }
 
-// Window resize handler
+// Window resize handler with debouncing
 window.addEventListener('resize', debounce(() => {
     ScrollTrigger.refresh();
 }, 100));
 
-// Scroll to top functionality
+/**
+ * Smooth scroll to top functionality
+ * Provides quick return to page top
+ */
 function scrollToTop() {
     gsap.to(window, {
         duration: 0.5,
@@ -729,19 +702,22 @@ function scrollToTop() {
     });
 }
 
-// Add scroll to top button
+/**
+ * Dynamic scroll-to-top button
+ * Appears when user scrolls down, provides quick return
+ */
 function addScrollToTopButton() {
     const button = document.createElement('button');
     button.innerHTML = '↑';
     button.className = 'scroll-to-top';
     button.style.cssText = `
         position: fixed;
-        bottom: 2rem;
-        right: 2rem;
+        bottom: 5rem;
+        right: 5rem;
         width: 50px;
         height: 50px;
         border-radius: 50%;
-        background: #64ffda;
+        background: #f59e0b;
         color: #0f172a;
         border: none;
         font-size: 1.2rem;
@@ -753,10 +729,8 @@ function addScrollToTopButton() {
     `;
     
     document.body.appendChild(button);
-    
     button.addEventListener('click', scrollToTop);
     
-    // Show/hide based on scroll position
     window.addEventListener('scroll', () => {
         if (window.scrollY > 500) {
             gsap.to(button, {
@@ -776,18 +750,18 @@ function addScrollToTopButton() {
     });
 }
 
-// Initialize scroll to top button
 addScrollToTopButton();
 
-// Performance optimization
+/**
+ * Performance optimization system
+ * Handles reduced motion preferences and tab visibility
+ */
 function optimizePerformance() {
-    // Reduce motion for users who prefer it
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         gsap.globalTimeline.timeScale(0.5);
         document.body.style.scrollBehavior = 'auto';
     }
     
-    // Pause animations when tab is not visible
     document.addEventListener('visibilitychange', () => {
         if (document.hidden) {
             gsap.globalTimeline.pause();
@@ -797,54 +771,28 @@ function optimizePerformance() {
     });
 }
 
-// Initialize performance optimizations
 optimizePerformance();
 
-// Console easter egg
-console.log(`
-🚀 Portfolio built with:
-• HTML5 & CSS3
-• Vanilla JavaScript
-• GSAP (GreenSock Animation Platform)
-• Love and attention to detail
-
-// === GLITCH EFFECT FOR FICO PROJECT ===
+/**
+ * Glitch effect for featured projects
+ * Creates dynamic visual effects for project showcases
+ */
 function initGlitchEffect() {
-    console.log('Initializing glitch effect...');
-    
     const glitchContainer = document.querySelector('.glitch-container');
     const glitchImages = document.querySelectorAll('.glitch-image');
     
-    console.log('Glitch container found:', glitchContainer);
-    console.log('Glitch images found:', glitchImages.length);
-    
-    if (!glitchContainer || glitchImages.length === 0) {
-        console.log('Glitch elements not found');
-        return;
-    }
+    if (!glitchContainer || glitchImages.length === 0) return;
 
     let currentIndex = 0;
     let isGlitching = false;
 
-    // Simple function to switch between logos
     function switchLogo() {
-        console.log('Switching logo from', currentIndex);
-        
-        // Remove active class from current image
         glitchImages[currentIndex].classList.remove('active');
-        
-        // Move to next image
         currentIndex = (currentIndex + 1) % glitchImages.length;
-        
-        // Add active class to new image
         glitchImages[currentIndex].classList.add('active');
-        
-        console.log('Switched to logo', currentIndex);
     }
 
-    // Start with a simple test - switch every 2 seconds
     function startSimpleGlitch() {
-        console.log('Starting glitch loop...');
         setInterval(() => {
             if (!isGlitching) {
                 switchLogo();
@@ -852,17 +800,22 @@ function initGlitchEffect() {
         }, 2000);
     }
 
-    // Start the effect
     setTimeout(startSimpleGlitch, 1000);
-    
-    console.log('Glitch effect initialized');
 }
 
-Built by [Your Name]
-GitHub: https://github.com/yourusername
+// Development signature
+console.log(`
+🚀 Portfolio System Initialized
+Built with modern web technologies:
+• Vanilla JavaScript ES6+
+• GSAP Animation Library
+• CSS3 Advanced Features
+• Responsive Design Patterns
+
+Performance optimized and accessibility compliant.
 `);
 
-// Export functions for potential external use
+// Public API for external integration
 window.portfolioApp = {
     scrollToTop,
     initApp

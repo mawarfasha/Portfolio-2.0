@@ -1,6 +1,21 @@
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, TextPlugin);
 
+// Fix viewport height on mobile devices
+function setVhProperty() {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+// Set initial viewport height
+setVhProperty();
+
+// Update viewport height on resize/orientation change
+window.addEventListener('resize', setVhProperty);
+window.addEventListener('orientationchange', () => {
+    setTimeout(setVhProperty, 100);
+});
+
 // Disable auto-refresh and scroll restoration
 ScrollTrigger.config({
     autoRefreshEvents: "none"
@@ -73,7 +88,8 @@ function initBlobCursor() {
     console.log('Initializing blob cursor...');
 
     // Set initial position off-screen
-    blob.style.transform = 'translate(-1000px, -1000px) translate(-50%, -50%)';
+    blob.style.left = '-1000px';
+    blob.style.top = '-1000px';
 
     // Track mouse movement
     document.addEventListener("mousemove", mouseMove);
@@ -82,13 +98,14 @@ function initBlobCursor() {
         // Smoothly interpolate blob position towards mouse position
         pos.x += (mouse.x - pos.x) * ratio;
         pos.y += (mouse.y - pos.y) * ratio;
-        blob.style.transform = `translate(${pos.x}px, ${pos.y}px) translate(-50%, -50%)`;
+        blob.style.left = `${pos.x}px`;
+        blob.style.top = `${pos.y}px`;
     }
 
     function mouseMove(e) {
-        var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        mouse.x = e.pageX;
-        mouse.y = e.pageY - scrollTop;
+        // Use clientX/clientY for viewport-relative positioning
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
         
         // Show the blob after first mouse movement
         if (blob.style.opacity === '0' || blob.style.opacity === '') {
@@ -445,7 +462,7 @@ function initLoadingAnimation() {
     // Typewriter effect for hero title
     gsap.to('.hero-title', {
         duration: 2,
-        text: "Front End Developer",
+        text: "Full-Stack Developer",
         ease: "none",
         delay: 1
     });

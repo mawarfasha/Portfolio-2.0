@@ -707,51 +707,73 @@ function scrollToTop() {
  * Appears when user scrolls down, provides quick return
  */
 function addScrollToTopButton() {
-    // Don't create the button on mobile devices
-    if (window.innerWidth <= 1024) {
-        return;
+    let button = null;
+    
+    function createButton() {
+        // Don't create the button on mobile devices
+        if (window.innerWidth <= 1024) {
+            if (button) {
+                button.remove();
+                button = null;
+            }
+            return;
+        }
+        
+        // Don't create if already exists
+        if (button) return;
+        
+        button = document.createElement('button');
+        button.innerHTML = '↑';
+        button.className = 'scroll-to-top';
+        button.style.cssText = `
+            position: fixed;
+            bottom: 5rem;
+            right: 5rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #f59e0b;
+            color: #0f172a;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        `;
+        
+        document.body.appendChild(button);
+        button.addEventListener('click', scrollToTop);
+        
+        window.addEventListener('scroll', () => {
+            if (!button) return;
+            
+            if (window.scrollY > 500) {
+                gsap.to(button, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            } else {
+                gsap.to(button, {
+                    opacity: 0,
+                    y: 20,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            }
+        });
     }
     
-    const button = document.createElement('button');
-    button.innerHTML = '↑';
-    button.className = 'scroll-to-top';
-    button.style.cssText = `
-        position: fixed;
-        bottom: 5rem;
-        right: 5rem;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background: #f59e0b;
-        color: #0f172a;
-        border: none;
-        font-size: 1.2rem;
-        cursor: pointer;
-        z-index: 1000;
-        opacity: 0;
-        transform: translateY(20px);
-        transition: all 0.3s ease;
-    `;
+    // Initial creation
+    createButton();
     
-    document.body.appendChild(button);
-    button.addEventListener('click', scrollToTop);
-    
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 500) {
-            gsap.to(button, {
-                opacity: 1,
-                y: 0,
-                duration: 0.3,
-                ease: "power2.out"
-            });
-        } else {
-            gsap.to(button, {
-                opacity: 0,
-                y: 20,
-                duration: 0.3,
-                ease: "power2.out"
-            });
-        }
+    // Handle window resize and orientation changes
+    window.addEventListener('resize', createButton);
+    window.addEventListener('orientationchange', () => {
+        setTimeout(createButton, 100);
     });
 }
 

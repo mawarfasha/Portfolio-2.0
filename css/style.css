@@ -1825,13 +1825,22 @@ button,
         border: 1px solid rgba(45, 212, 191, 0.2);
         position: static !important;
         display: inline-block;
-        pointer-events: none !important;
-        user-select: none !important;
-        -webkit-tap-highlight-color: transparent !important;
-        -webkit-touch-callout: none !important;
-        -webkit-user-select: none !important;
-        -moz-user-select: none !important;
-        -ms-user-select: none !important;
+        transition: all 0.2s ease;
+    }
+
+    /* Mobile-specific skill tag tap effects */
+    .experience-item:active .skill-tag,
+    .experience-item:hover .skill-tag {
+        background: none;
+        box-shadow: none;
+        transform: scale(1.02);
+    }
+
+    .project-item:active .project-skills .skill-tag,
+    .project-item:hover .project-skills .skill-tag {
+         background: none;
+        box-shadow: none;
+        transform: scale(1.02);
     }
     
     /* Projects */
@@ -2078,7 +2087,10 @@ button,
     background-size: 800px 150px;
     -webkit-animation: animar_edificios 120s linear infinite;
     -ms-animation: animar_edificios 120s linear infinite;
-    -moz-animation: animar_edificios 120s linear infinite;
+       .experience-item:hover .skill-tag {
+        background: rgba(45, 212, 191, 0.2);           /* Background color on hover/tap */
+        box-shadow: 0 0 10px rgba(94, 234, 212, 0.3);  /* Glow effect on hover/tap */
+    } -moz-animation: animar_edificios 120s linear infinite;
     animation: animar_edificios 120s linear infinite;
     position: absolute;
 }

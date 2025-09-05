@@ -26,5 +26,8 @@
     "type": "git",
     "url": "https://github.com/yourusername/portfolio"
   },
-  "homepage": "https://yourusername.github.io/portfolio"
+  "homepage": "https://yourusername.github.io/portfolio",
+  "dependencies": {
+    "@vercel/analytics": "^1.5.0"
+  }
 }

@@ -529,6 +529,11 @@
     </main>
 
     <!-- Application Scripts -->
+    <!-- Vercel Analytics -->
+    <script type="module">
+      import { inject } from 'https://cdn.skypack.dev/@vercel/analytics';
+      inject();
+    </script>
     <script src="js/main.js"></script>
 </body>
 </html>
